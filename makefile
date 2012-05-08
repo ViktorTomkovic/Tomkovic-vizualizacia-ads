@@ -1,5 +1,5 @@
 default: tomkovic-vizualizacia-ads.pdf
-tomkovic-vizualizacia-ads.pdf: *.tex literatura.bib obrazky/*
+tomkovic-vizualizacia-ads.pdf: *.tex literatura.bib obrazky/* *.cbx *.lbx *.bbx
 	xelatex tomkovic-vizualizacia-ads.tex
 #	bibtex tomkovic-vizualizacia-ads
 	biber tomkovic-vizualizacia-ads
