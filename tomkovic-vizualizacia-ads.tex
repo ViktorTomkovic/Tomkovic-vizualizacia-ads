@@ -1,61 +1,16 @@
-\documentclass[a4paper,twoside,12pt]{book} %aaaaa čo je to vlastne za prácu ta bakalárka? book/report?
-% užitočná linka http://en.wikibooks.org/wiki/LaTeX/
-% http://www.scribd.com/doc/2633955/Writing-a-thesis-with-LaTeX
-% http://www.eng.cam.ac.uk/help/tpl/textprocessing/reports.html
-% documentclass možno volať aj s [openright] ale asi nefunguje
-%%načítanie balíkov
+\documentclass[a4paper,twoside,12pt]{book} 
 
-%lintex!
-
-% zlý, latex, zlý! :)
-%\usepackage[utf8x]{inputenc} %používať utf8x je ževraj nebezpečné!!
-%\usepackage[T1]{fontenc}
-
-%%xelatex!
 \usepackage[xetex]{graphicx}
-\usepackage{fontspec,xunicode}
-\usepackage{amsmath}
-%\usepackage{unicode-math}
+\usepackage{fontspec}
+\usepackage{xunicode}
 \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase,Ligatures={Common}}
-%\setmainfont{Nimbus Roman No9 L}
 %\setmonofont{LMMonoLt10}
 \setmainfont{Junicode}
-%\setmainfont{Gentium Basic}
-%\setmainfont{Asana-Math}
 \newICUfeature{LigType}{disc}{+dlig}
-%\usepackage[bibstyle=numeric, citestyle=numeric-comp, sorting=none, backend=biber]{biblatex}
-%\bibliography{literatura}
 
-%http://www.charlietanksley.net/philtex/the-unicode-math-package-for-xelatex-and-the-stix-fonts/
-%\setsansfont[Mapping=tex-text]{Arial}
-%\setmonofont{Courier New}
-%\setmathfont{Asana-Math}
+\usepackage{polyglossia}
+\setdefaultlanguage{slovak}
 
-%\setmathfont{STIXGeneral}
-
-% \usepackage{microtype}
-
-\usepackage[english,czech,slovak]{babel}
-% \usepackage{slovak}
-%%slovenská deľba slov
-%http://ctan.org/pkg/polyglossia
-% \usepackage{polyglossia}
-% \setdefaultlanguage{slovak}
-% \usepackage[slovak]{babel}
-
-% \usepackage[numbers]{natbib}
-% \usepackage[round]{natbib}
-
-\usepackage[german=quotes,style=german]{csquotes}
-% \usepackage{csquotes}
-% \DeclareQuoteStyle{czech}%     [variant]{style}
-%   {\quotedblbase }%                   opening outer mark
-%   {\textquotedblleft}%                  closing outer mark
-%   {\textquoteleft}%                      opening inner mark
-%   {\textquoteright}%    
-% %\DeclarePlainStyle{,,}{''}{,}{'}
-% \setquotestyle{czech}
-% \usepackage[style=authoryear-comp,bibstyle=authoryear,backend=biber]{biblatex}
 \usepackage[
    backend=biber      % if we want unicode 
   ,style=iso-authoryear % iso-authoryear or iso-numeric for numeric citation method
@@ -64,51 +19,25 @@
   %,sortlocale=cs_CZ   % locale of main language, it is for sorting
   ,bibencoding=UTF8   % this is necessary only if bibliography file is in different encoding than main document
 ]{biblatex}
-% \input{bibiso}
-% \input{bibloc}
-% style
-% authoryear-comp
-% verbose-trad1
-% bibstyle
-% authoryear
-\def\citet#1{\textcite{#1}}
-\def\citep#1{\parencite{#1}}
 \addbibresource{literatura.bib}
- 
-\usepackage{graphics}
-\usepackage{graphicx}
+
+\usepackage[a4paper]{geometry}
+\geometry{top=2.5cm,bottom=2.5cm,left=3.5cm,right=2.0cm}
+\usepackage{setspace}
+% \singlespacing
+\onehalfspacing
+\usepackage{changepage}
+\usepackage{indentfirst}
+
+\usepackage{url}
+\usepackage[xetex]{hyperref}
+     
+% \usepackage{caption}
+% \usepackage{subcaption}
 \usepackage{subfig}
 \usepackage{array}
-
-%%nastavenie okrajov
-\usepackage[a4paper]{geometry}
-%toto je fakt nechutné odsádzanie..
-%\geometry{top=2.5cm,bottom=2.5cm,left=3.5cm,right=2cm}
-\geometry{top=2.5cm,bottom=2.5cm,left=3.5cm,right=2.0cm}
-%%riadkovanie primárneho textu
-\usepackage{setspace}
-%\singlespacing
-\onehalfspacing
-%\doublespacing
-%\setstretch{1.1}
-
-\usepackage{changepage}
-
-
-%%package, ktoré sú užitočné, ale zatiaľ som ich nepoužil
-%\usepackage{lastpage}
-%\usepackage{layouts}
-%\usepackage[]{fp}
-%\usepackage{listings-ext}
-%\lstset{language=C++}
-%\usepackage[comma,authoryear]{natbib}
-%
-
   
-\usepackage{url}
-\usepackage[a4paper=true,hypertex]{hyperref}
-
-%%definície konštánt
+%%definície konštánt a makier
 \def \nazovUniverzity{Univerzita Komenského v Bratislave}
 \def \NazovUniverzity{\textbf{\Large \sc \nazovUniverzity}} %\sc pre smallcaps
 \def \nazovFakulty{Fakulta matematiky, fyziky a informatiky}
@@ -121,67 +50,26 @@
 \def \TypPrace{\large{\typPrace}}
 \def \autor{Viktor Tomkovič}
 \def \veduci{Mgr. Jakub Kováč}
-\def \rok{2011}
+\def \rok{2012}
 \def \miestoRok{Bratislava, \rok}
 \def \cisloOdboru{2508}
 \def \katedra{Katedra Informatiky FMFI}
 \def \odbor{Informatika}
 \def \program{Informatika}
-
-%%škaredé veci
-%\def \lavyokraj{\oddsidemargin}%\printinunitsof{cm}\prntlen{\textwidth}}%\prntlen{\oddsidemargin}}
-%\def \pravyokraj{\the\pdfpagewidth-\the\oddsidemargin+\the\textwidth}
-%\FPadd{}{\the\pdfpagewidth}{\the\textwidth}
-
-%%definície príkazov
+\def\citet#1{\textcite{#1}}
+\def\citep#1{\parencite{#1}}
 %citat: argumenty sú citát a meno autora
-%\citat{Live as if you were to die tomorrow\\Learn as if you were to live forever.}{Mahátma Gándhí}
-% Copy from one, it’s plagiarism; copy from two, it’s research. Wilson Mizner
 \newcommand{\citat}[2]{\begin{flushright}\textsl{#1}\\#2\end{flushright}}
 %strednp je vystredenie textu na nepárnej strane bez ohľadu na okraje(!!!), parametrom je text
 \newcommand{\stredp}[1]{\begin{adjustwidth}{+0.50cm}{+0.00cm} \begin{center} #1 \end{center} \end{adjustwidth}}
 %stredp je obdoba predošlého príkazu len pre párne strany
 \newcommand{\strednp}[1]{\begin{adjustwidth}{+0.0cm}{+0.50cm} \begin{center} #1 \end{center} \end{adjustwidth}}
-
-%To supress only the word chapter, add this in the preamble:
-%\renewcommand{\chaptername}{} %nefunguje
-%If you also want to supress the numbering then add
-%\renewcommand{\thechapter}{}
-
-%\usepackage{epsfig}
-%\usepackage{url}
-
-% \DeclareTextCommandDefault\clqq{\leavevmode
-%   \set@low@box{„}%
-%   \setbox1=\hbox{l\/}\dimen1=\wd1
-%   \setbox1=\hbox{l}\advance\dimen1 by -\wd1
-%   \ifdim\dimen1>0pt\kern-.1em\box0\kern.1em
-%     \else\kern.1em\box0\kern-.1em\fi\nobreak\hskip0pt}
-% \DeclareTextCommandDefault\crqq{\edef\@SF{\spacefactor\the\spacefactor}%
-%   \nobreak\kern-.07em\hbox{“}\kern.07em\@SF\relax}
-
-\def\uv#1{„#1“}
-%  \newcommand{\uv}[1]{\clqq #1\crqq}
-% \def\uv#1{\clqq #1\clrqq}
 \def\todo#1{\par\smallskip{\scriptsize {\bf TODO: }#1}\par\smallskip}
 
-\def\ins{\mathop{\mathit{insert}}}
-\def\find{\mathop{\mathit{find}}}
-\def\delete{\mathop{\mathit{delete}}}
-\def\dec{\mathop{\mathit{decreaseKey}}}
-\def\delmin{\mathop{\mathit{deleteMin}}}
-\def\meld{\mathop{\mathit{meld}}}
-\def\rank{\mathop{\mathit{rank}}}
-\def\L{\mathop{\mathit{left}}}
-\def\R{\mathop{\mathit{right}}}
-\def\reverse{\mathop{\mathit{reverse}}}
-\def\Bp{$\hbox{\rm B}\!^+\!$}
-
-\def\null{\texttt{NULL}}
+\def\nul{\texttt{NULL}}
 \def\makeset{$\mathop{\mathit{makeset}}(x)$}
 \def\find{$\mathop{\mathit{find}}(x)$}
 \def\union{$\mathop{\mathit{union}}(x, y)$}
-
 \def\k{w}
 %\def\kluc{kľúč}
 \def\put{$\mathop{\mathit{insert}}(\k)$}
@@ -189,96 +77,25 @@
 \def\delete{$\mathop{\mathit{delete}}(\k)$}
 \def\trie{trie}
 \def\uz{\hbox{\tt\$}}
-
-
+\def\rank{\mathop{\mathit{rank}}}
+\def\Java{\texttt{JAVA}}
+ 
+\def\uv#1{„#1“}
 \catcode`\"=\active \def "{\begingroup„\def "{\endgroup“}}
 \begin{document}
-% \catcode`\"=\active \def "{\begingroup\clqq\def "{\endgroup\crqq}}
-
 \frontmatter
-
+\pagestyle{plain}
 \input{predok}
-
 \mainmatter
-
-%\part{Vizualizácia a dátové štruktúry}
-
+\pagestyle{headings}
 \input{uvod}
-
-% \indent Dátové štruktúry a algoritmy tvoria základnú, prvotnú časť výučby informatiky.
-% Vizualizácia algoritmov a dátových štruktúr (ďalej len ako "vizualizácia") je grafické znázornenie, 
-% ktoré abstrahuje spôsob ako algoritmus a dátové štruktúry pracujú od ich vnútornej reprezentácie a umiestení v pamäti.
-% Je teda vyhľadávaná a všeobecne rozšírená pomôcka pri výučbe.
-% Výsledky výskumov ohľadne jej efektívnosti sa rôzňa, od stavu "nezaznamenali sme výrazné zlepšenie" po "je viditeľné zlepšenie".
-% \cite{Shaffer:2010:AVS:1821996.1821997}
-% Zaujímavé je pozorovanie, že určovanie si vlastného tempa pri vizualizácií je veľká pomôcka, 
-% oproti tomu ukazovaniu pseudokódu alebo nemožnosť určovania tempa, napríklad animácia bez možnosti pozastavenia,
-% takmer žiadne zlepšenie neprináša.
-% \cite{Shaffer:2010:AVS:1821996.1821997}\cite{Saraiya:2004:EFA:971300.971432}
-% Rozmach vizualizačných algoritmov priniesla najmä Java a jej fungovanie, bez viazanosti na konkrétny operačný systém. 
-% Kvalita vizualizácií sa líši a keďže ide o ľahko naprogramovateľné programy, je ich veľa a sú pomerne nekvalitné. 
-% V takomto množstve je ťažké nájsť kvalitné vizualizácie. 
-% Zbieraním a analyzovaním kvality sa venuje skupina AlgoViz, ktorá už veľa rokov funguje na portále algoviz.org.
-% 
-% Táto práca opisuje algoritmy na dátových štruktúrach: dynamické množiny s operáciami "nájdi"\ a "spoj" 
-% (v texte označované union-find), lexikografický strom a suffix tree.
-% Union-find je stále skúmaný problém.\cite{Wu:2005}\cite{Aho:1974:DAC:578775}\cite{Yao:1985:EPP:3674.3682}\cite{wiki:uf} 
-% V dôkaze Tarjana o najhoršom prípade stále sa zatiaľ chyba nenašla.
-% Priemerný prípad je zaujímavejší, práca z roku 2005 ukazuje, že union--find problém je lineárny.\cite{Wu:2005}
-% 
-% O stringológií som ešte nečítal, takže súčasný stav neviem.
-% 
-
-% Uvedené dátové štruktúry sú rozšírené a preto považujem za vhodné spraviť ich kvalitnú vizualizáciu a kompiláciu. 
-% Zdôrazňujem kvalitnú, lebo na spomínanom portále algoviz.org, v čase písania žiadna dobrá vizualizácia union-find problému nie je.
-% Motiváciou je najmä s ostatnými spoluautormi Kubom Kováčom, Katkou Kotrlovou, Tatianou Tóthovou a Paľom Lukčom vybudovať 
-% vizualizačný software, ktorý poslúži ako dobrá pomôcka učiteľom a študentom informatiky nielen na Slovensku, ale aj v zahraničí.
-% (ako mám napísať, že Katreniaková, Kováč už niečo podobné na našej fakulte robili a Kotrlová momentálne robí?)
-
-
 \input{uf}
-
 \input{trie}
-
-\begin{figure}[!hbt]
-\begin{center}
-\includegraphics[width=0.5\textwidth]{obrazky/komlogo-new}
-
-\caption{Ján Ámos Logo.}
-\label{img:komensky}
-\end{center}
-\end{figure}
-
-A na Obrázku \ref{img:komensky} je väčší Komenský ako na titulke.
-
-\begin{verbatim}
-for(int i=0; i<n; i++)
-    cout << "loop";
-\end{verbatim}
-
-\begin{figure}[!hbt]
-\begin{center}
-\includegraphics[width=\textwidth]{obrazky/uf00.png}
-
-\caption{Union-find procedúra find - hľadanie zástupcu.}
-\label{img:uf00}
-\end{center}
-\end{figure}
-
-\begin{align}
-& \cos^2\psi+\sin^2\psi & = 1, \\
-& \cosh^2\omega-\sinh^2\omega &=1. \\
-& ⊢ ∀x[(Fx ∨ Gx) → \mathord{∼}Hx] \\
-& ⊨ ¬∃y∀x[x∈y ↔ x∉x]  \\
-& ⊭ x ∩ (y ∪ z) ≠ (x ∩ y) ∪ (x ∩ z) \\
-& ⊢ ⟦α⟧ = ℵ₀ → α ≇ ℘(α) \\
-& ⌜ψ[(℩x)φx]⌝ ≝
-     ⌜(∃x)[φx ∧ (∀z)(φz ⊃ x=z) ∧ ψx]⌝ \\
-& ⊢ (P ⥽ Q) ⥽ (□P ⥽ ◇Q)
-\end{align}
-
-{\fontspec[LigType=disc]{Junicode}[20][[1]]}
-
-
+\input{suffixtree}
+\input{popis}
+\input{implementacia}
+\backmatter
 \input{zaver}
+
 \end{document}
+

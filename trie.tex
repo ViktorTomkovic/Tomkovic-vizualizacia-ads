@@ -1,15 +1,9 @@
 
-\chapter{Písmenkový strom}
+\chapter{Písmenkový strom}\label{chap:trie}
 
-\section{Písmenkový strom}
 \emph{Písmenkový strom} reprezentuje množinu slov. Oproti binárnym 
 vyhľadávacím stromom je hlavný rozdiel v tom, že kľúče nie sú uložené 
 vo vrcholoch, ale samotná poloha v strome určuje kľúč (slovo). 
-
-% My používame ako abecedu veľké znaky anglickej 
-% abecedy a ukončovací znak značíme dolárom (\uz).
-
-
 
 \section{Popis}
 Písmenkový strom je \emph{zakorenený strom}, v~ktorom každá hrana obsahuje 
@@ -60,8 +54,6 @@ ktorá je vyznačená červenou.}
 \label{img:triedelete} 
 \end{figure}
 
-\bigskip
-% \paragraph{Časová zložitosť.}
 Všetky tri operácie majú časovú 
 zložitosť $O(|\k|)$, kde $|\k|$ je dĺžka slova.
 
@@ -69,16 +61,6 @@ zložitosť $O(|\k|)$, kde $|\k|$ je dĺžka slova.
 Prvýkrát navrhol písmenkový strom \citet{fredkin}, ktorý používal názov 
 \emph{trie memory}\footnote{Z anglického re\emph{trie}val -- získanie.}, 
 keďže išlo o spôsob udržiavania dát v pamäti. 
-%používal operácie 
-%$\mathop{storage}$ (\put), $\mathop{retrieval}$ (\find) 
-%a $\mathop{deletion}$ (\delete) a dátovú štruktúru nazýval \emph{trie 
-%memory}, keďže išlo naozaj o spôsob uloženia dát v pamäti.
-
-%O niečo neskôr \citet{knuth} uviedol vo svojej knihe ako príklad na 
-%písmenkový strom vreckový slovník. 
-%V tom istom diele uviedol aj možnosť 
-%komprimovania vetiev a možnosť prerobenia $m$-árneho \trie\ na binárny. 
-%\citet{knuth} však ukázal len komprimovanie koncov vetiev. 
 \citet{patricia} navrhol písmenkový strom, v ktorom sa každá cesta bez vetvení
 skomprimuje do jedinej hrany (na hranách potom nie sú znaky, ale slová).
 Táto štruktúra je známa pod menom \emph{PATRICIA} (tiež \emph{radix tree},
