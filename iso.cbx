@@ -5,11 +5,11 @@
 \providebool{cbx@numeric}
 \ifthenelse{\boolean{cbx@numeric}}{%
 \RequireCitationStyle{authoryear}
-\renewbibmacro*{cite:labelyear+extrayear}{%
-  \iffieldundef{labelyear}
-    {}
-    {\addcomma\addspace\printtext[bibhyperref]{%
-       \printfield{labelyear}%
-       \printfield{extrayear}}}}
-}{\RequireCitationStyle{numeric}}
+% \renewbibmacro*{cite:labelyear+extrayear}{%
+%   \iffieldundef{labelyear}
+%     {}
+%     {\addcomma\addspace\printtext[bibhyperref]{%
+%        \printfield{labelyear}%
+%        \printfield{extrayear}}}}
+% }{\RequireCitationStyle{numeric}}
 \endinput

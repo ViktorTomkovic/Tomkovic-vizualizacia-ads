@@ -27,9 +27,9 @@ $O(n)$ a to aj pre rýchlosť, aj pre pamäť.
 % prečítať vstup, nie?
 
 Môžeme si všimnúť, že keď už máme vytvorený strom 
-$T(i-1)$ (ktorý obsahuje sufixy $w_1\cdots w_{i-1}, w_2\cdots w_{i-1},\ldots, 
+$T(i-1)$ (ktorý obsahuje sufixy $w_1\cdots w_{i-1}, w_2\cdots w_{i-1}, \ldots, 
 w_{i-1}$), tak pre vytvorenie stromu $T(i)$ netreba znovu vytvárať nový strom 
-a pridávať do neho sufixy $w_1\cdots w_{i-1}w_i, w_2\cdots w_{i-1}w_i,\ldots, 
+a pridávať do neho sufixy $w_1\cdots w_{i-1}w_i, w_2\cdots w_{i-1}w_i, \ldots, 
 w_{i-1}w_i$, ale stačí rozšíriť existujúce sufixy o znak $w_i$.
 
 Druhým dobrým pozorovaním je fakt, že keď máme znak $a$, slovo $v$ 
@@ -105,7 +105,7 @@ slove, ktorá sa každým rozšírením zvýši o jeden.
 Druhým pozorovaním je, že po prvom výskyte tretieho prípadu sa strom už 
 nerozšíri. Vyplýva to zo základnej vlastnosti sufixového stromu: ak 
 rozširujeme strom o písmenko $w_i$ a v strome je slovo $w_j\cdots w_i$, tak 
-sú v ňom aj slová $w_{j+1}\cdots w_i, w_{j+2}\cdots w_i,\ldots, w_i$.
+sú v ňom aj slová $w_{j+1}\cdots w_i, w_{j+2}\cdots w_i, \ldots, w_i$.
 
 Ďalším pozorovaním je, že pri rozširovaní najprv nastávajú prvé prípady, 
 potom druhé a až potom tretie.
@@ -161,14 +161,14 @@ $T(i-1)$ o písmenko $w_i$\footnote{Respektíve strom $T$ zo stromu
 $T(n)$ o písmenko $w_n$.} nasledovne:
 
 \begin{enumerate}
-\item index $e$ nastavíme na novú hodnotu $i$. 
-Tým sme vykonali všetky prvé prípady. Vieme si udržiavať ich počet $j$,
-\item za aktuálny vrchol $u$ si zvolíme štartovací vrchol $u_s$,
+\item index $e$ nastavíme na novú hodnotu $i$; 
+Tým sme vykonali všetky prvé prípady. Vieme si udržiavať ich počet $j$;
+\item za aktuálny vrchol $u$ si zvolíme štartovací vrchol $u_s$;
 \item z aktuálneho vrcholu prejdeme po hrane vyššie a zapamätáme si reťazec 
-$\alpha$,
+$\alpha$;
 \item ak nie sme v koreni, prejdeme po sufixovom linku. Nastavíme aktuálny 
-vrchol,
-\item z aktuálneho vrcholu vyhľadáme reťazec $w_{j+1}\cdots w_i$,
+vrchol;
+\item z aktuálneho vrcholu vyhľadáme reťazec $w_{j+1}\cdots w_i$;
 \item teraz môže nastať druhý alebo tretí prípad:
 \begin{itemize}
 \item ak nastal druhý prípad, v prípade potreby rozdelíme hranu. Nastavíme 
@@ -182,4 +182,32 @@ práve vytvorený. Vrátime sa na krok~3;
 \end{enumerate}
  
 Takto vybudujeme sufixový strom pre slovo $w$.
+
+\section{Použitie}
+
+Sufixový strom má v stringológií veľa využití
+\citep{gusfield}. Najtriviálnejší je algoritmus na zistenie podreťazca v 
+slove. Navyše vieme určiť, na ktore pozícií sa podreťazec vyskytuje. Pri 
+konštrukcii stromu stačí označovať listy číslami v poradí podľa vytvorenia. 
+
+Sufixový strom pre viacej reťazcov sa nazýva \emph{všeobecný sufixový strom} 
+a dá sa zostrojiť miernou úpravou Ukkonenovho algoritmu. Reťazce $v_1, v_2, 
+v_3, \ldots, v_n$ spojíme a oddelíme unikátnymi oddelovačmi. Vznikne nám slovo 
+$v_1\uz_1v_2\uz_2v_3\uz_3\cdots v_n\uz_n$, z ktorého vieme vybudovať sufixový 
+strom. Tento strom sa dá využiť na vyhľadanie najdlhšieho spoločného 
+podreťazca. 
+
+\section{Vizualizácia}
+
+Sufixový strom sme vizualizovali podobne ako písmenkový strom, použili sme 
+Walkerov algoritmus \citep{walker} so zakrivenými hranami. Sufixové linky 
+sme znázornili šedými šípkami. Na rozdiel od písmenkového stromu sa v 
+sufixovom strome vyskytujú na hranách reťazce. Tie sme znázornili ako viac 
+spojených hrán.
+
+Pri vizualizácií algoritmu oznažujeme hrany, pre ktoré platí prvý prípad, 
+ružovou farbou. Hranu, pre ktorú platí prvý prípad a je pridaná ako posledná, 
+označujeme zelenou farbou. Z tejto hrany začína "zaujímavejšia" časť 
+rozširovania stromu.
+
 

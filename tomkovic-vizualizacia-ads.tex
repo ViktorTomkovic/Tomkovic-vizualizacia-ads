@@ -1,11 +1,18 @@
-\documentclass[a4paper,twoside,12pt]{book} 
-
+\documentclass[a4paper,oneside,12pt]{book} 
+ 
 \usepackage[xetex]{graphicx}
 \usepackage{fontspec}
 \usepackage{xunicode}
 \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase,Ligatures={Common}}
 %\setmonofont{LMMonoLt10}
 \setmainfont{Junicode}
+%\setmainfont{Times New Roman}
+% \setmainfont[
+%  BoldFont={Junicode}, 
+%  ItalicFont={Junicode},
+%  BoldItalicFont={Junicode}
+%  ]{Gentium}
+
 \newICUfeature{LigType}{disc}{+dlig}
 
 \usepackage{polyglossia}
@@ -21,13 +28,23 @@
 ]{biblatex}
 \addbibresource{literatura.bib}
 
-\usepackage[a4paper]{geometry}
+\usepackage{xcolor}
+\usepackage[head=20pt,a4paper]{geometry}
 \geometry{top=2.5cm,bottom=2.5cm,left=3.5cm,right=2.0cm}
 \usepackage{setspace}
 % \singlespacing
 \onehalfspacing
 \usepackage{changepage}
 \usepackage{indentfirst}
+
+\usepackage{fancyhdr}
+\fancypagestyle{plain}{ %
+\fancyhf{} %
+\fancyfoot[LE,RO]{\thepage} %
+\renewcommand{\headrulewidth}{0pt} % remove lines as well
+\renewcommand{\footrulewidth}{0pt} %
+}
+
 
 \usepackage{url}
 \usepackage[xetex]{hyperref}
@@ -59,7 +76,7 @@
 \def\citet#1{\textcite{#1}}
 \def\citep#1{\parencite{#1}}
 %citat: argumenty sú citát a meno autora
-\newcommand{\citat}[2]{\begin{flushright}\textsl{#1}\\#2\end{flushright}}
+\newcommand{\citat}[2]{\begin{flushright}\small\textsl{#1}\\#2\end{flushright}}
 %strednp je vystredenie textu na nepárnej strane bez ohľadu na okraje(!!!), parametrom je text
 \newcommand{\stredp}[1]{\begin{adjustwidth}{+0.50cm}{+0.00cm} \begin{center} #1 \end{center} \end{adjustwidth}}
 %stredp je obdoba predošlého príkazu len pre párne strany
@@ -67,18 +84,29 @@
 \def\todo#1{\par\smallskip{\scriptsize {\bf TODO: }#1}\par\smallskip}
 
 \def\nul{\texttt{NULL}}
-\def\makeset{$\mathop{\mathit{makeset}}(x)$}
-\def\find{$\mathop{\mathit{find}}(x)$}
-\def\union{$\mathop{\mathit{union}}(x, y)$}
+\def\makeset{\mathop{\mathit{makeset}}}
+\def\find{\mathop{\mathit{find}}}
+\def\union{\mathop{\mathit{union}}}
 \def\k{w}
 %\def\kluc{kľúč}
-\def\put{$\mathop{\mathit{insert}}(\k)$}
-\def\find{$\mathop{\mathit{find}}(\k)$}
-\def\delete{$\mathop{\mathit{delete}}(\k)$}
+\def\put{\mathop{\mathit{insert}}}
+\def\triefind{\mathop{\mathit{find}}}
+\def\delete{\mathop{\mathit{delete}}}
 \def\trie{trie}
 \def\uz{\hbox{\tt\$}}
 \def\rank{\mathop{\mathit{rank}}}
 \def\Java{\texttt{JAVA}}
+
+\setlength\fboxsep{0pt}
+\setlength\fboxrule{0.5pt}
+\definecolor{grey}{gray}{0.6}
+\newcommand{\mybox}[2]{{\color{#1}\fbox{\normalcolor#2}}}
+\newcommand{\greybox}[1]{\mybox{grey}{#1}}
+
+% \setlength{\parindent}{0.5in}
+% \setlength{\parskip}{0.45cm}
+\setlength{\parindent}{0.25in}
+%\setlength{\parskip}{0.3em}
  
 \def\uv#1{„#1“}
 \catcode`\"=\active \def "{\begingroup„\def "{\endgroup“}}
@@ -87,7 +115,23 @@
 \pagestyle{plain}
 \input{predok}
 \mainmatter
-\pagestyle{headings}
+% \pagestyle{headings}
+\pagestyle{fancy}
+\fancyhf{} 
+\fancyfoot[LE,RO]{\thepage} 
+%  \renewcommand{\chaptermark}[1]{%
+% \markboth{\MakeUppercase{%
+% \chaptername}\ \thechapter.%
+% \ #1}{}}
+\renewcommand{\chaptermark}[1]{%
+\markboth{\MakeUppercase{%
+\chaptername\ \thechapter.%
+\ #1}}{}}
+\fancyhead[LE,RO]{\leftmark}
+\renewcommand{\headrulewidth}{0pt} % remove lines as well
+\renewcommand{\footrulewidth}{0pt} %
+% \renewcommand{\chaptermark}[1]{\markboth{#1}{}} 
+% \renewcommand{\sectionmark}[1]{\markright{#1}{}}
 \input{uvod}
 \input{uf}
 \input{trie}
@@ -96,6 +140,6 @@
 \input{implementacia}
 \backmatter
 \input{zaver}
-
+ 
 \end{document}
 

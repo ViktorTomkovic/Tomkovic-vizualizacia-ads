@@ -7,16 +7,16 @@ pre daný prvok efektívne zistiť, do ktorej skupiny patrí. Predpokladáme,
 a potrebujeme implementovať nasledovné tri operácie:
 
 \begin{itemize}
-\item \makeset\ -- vytvorí novú množinu $S=\{x\}$ s jedným prvkom; %,
+\item $\makeset(x)$ -- vytvorí novú množinu $S=\{x\}$ s jedným prvkom; %,
                    %ktorý nepatrí do žiadnej inej množiny;
-\item \union\ -- ak $x,y$ sú zástupcovia množín $S$ a $T$,
-                 {\it union} vytvorí novú množinu $S\cup T$,
+\item $\union(x, y)$ -- ak $x, y$ sú zástupcovia množín $S$ a $T$,
+                 $\union$ vytvorí novú množinu $S\cup T$,
                  pričom $S$ aj $T$ zmaže. Zástupcom novej množiny $S\cup T$
                  je $x$ alebo $y$.
-\item \find\ -- nájde zástupcu množiny, v ktorej sa 
+\item $\find(x)$ -- nájde zástupcu množiny, v ktorej sa 
                 prvok $x$ nachádza.
 \end{itemize}
-
+ 
 \section{Použitie}\label{sec:uf-pouzitie}
 
 Union-find sa dá použiť na reprezentáciu neorientovaného grafu,
@@ -40,15 +40,15 @@ jednej množine a korene stromov sú zástupcovia množín. Pri implementácií 
 stačí pre každý prvok $x$ udržiavať smerník $p(x)$ na jeho otca
 (pre koreň je $p(x)=\nul$).
 
-Operácia \makeset\ teda vytvorí nový prvok $x$ a nastaví $p(x) = \nul$. 
+Operácia $\makeset(x)$ teda vytvorí nový prvok $x$ a nastaví $p(x) = \nul$. 
 
-Operáciu \find\ vykonáme tak, že budeme sledovať cestu po smerníkoch, až 
+Operáciu $\find(x)$ vykonáme tak, že budeme sledovať cestu po smerníkoch, až 
 kým nenájdeme zástupcu. 
 
-Operáciu \union\ ide najjednoduchšie vykonať tak, že presmerujeme smerník 
+Operáciu $\union(x, y)$ ide najjednoduchšie vykonať tak, že presmerujeme smerník 
 $p(y)$ na prvok $x$, teda $p(y) \gets x$. 
 Môžeme ľahko pozorovať, že takýto \emph{naivný} spôsob je neefektívny, 
-lebo nám operácia \find\ v najhoršom prípade, na $n$ prvkoch, trvá $\Omega(n)$ 
+lebo nám operácia $\find(x)$ v najhoršom prípade, na $n$ prvkoch, trvá $\Omega(n)$ 
 krokov. 
 
 \smallskip
@@ -56,12 +56,12 @@ Existujú dva prístupy ako zlepšiť operácie a tým aj zrýchliť ich vykonan
 Sú to: heuristika \emph{spájanie podľa ranku} a rôzne heuristiky na 
 \emph{kompresiu cesty}. 
 
-\section{Heuristika na spájanie}
+\section{Heuristika na spájanie}\label{sec:komp-union}
 
 Prvá heuristika pre každý vrchol $x$ udržuje hodnotu $\rank(x)$,
 ktorá určuje najväčšiu možnú hĺbku podstromu s koreňom $x$.
-Pri o\-pe\-rá\-cií \makeset\ zadefinujeme $\rank(x) = 1$. 
-Pri o\-pe\-rá\-cií \union\ porovnáme $\rank(x)$ a $\rank(y)$
+Pri o\-pe\-rá\-cií $\makeset(x)$ zadefinujeme $\rank(x) = 1$. 
+Pri o\-pe\-rá\-cií $\union(x, y)$ porovnáme $\rank(x)$ a $\rank(y)$
 a vždy napojíme strom s menším rankom pod strom s väčším rankom.
 Ak majú oba stromy rovnaký rank, napojíme povedzme $x$ pod $y$
 a $\rank(y)$ zvýšime o 1.
@@ -72,29 +72,29 @@ a $\rank(y)$ zvýšime o 1.
 % jeho rank zvýšime o jeden a smerník ostatného zástupcu bude ukazovať 
 % na tohto zástupcu. %Zástupcom novej množiny bude vybratý zástupca. 
 
-\section{Heuristiky na kompresiu cesty}
+\section{Heuristiky na kompresiu cesty}\label{sec:komp-cesta}
       
 \begin{figure}
 \centering
 \subfloat[Pred vykonaním kompresie.]{
 \label{img:komp1}
 % ,width=0.4\textwidth
-\includegraphics[height=0.36\textwidth]{obrazky/komp1.png}
+\includegraphics[height=0.24\textheight]{obrazky/komp1.png}
 }
 \qquad
 \subfloat[Úplná kompresia.]{
 \label{img:komp2}
-\includegraphics[height=0.18\textwidth]{obrazky/komp2.png}
+\includegraphics[height=0.12\textheight]{obrazky/komp2.png}
 }
 
 \subfloat[Delenie cesty.]{
 \label{img:komp3}
-\includegraphics[height=0.24\textwidth]{obrazky/komp3.png}
+\includegraphics[height=0.16\textheight]{obrazky/komp3.png}
 }
 \qquad
 \subfloat[Pólenie cesty.]{
 \label{img:komp4}
-\includegraphics[height=0.30\textwidth]{obrazky/komp4.png}
+\includegraphics[height=0.20\textheight]{obrazky/komp4.png}
 }
  
 \label{img:kompresia}
@@ -107,20 +107,20 @@ cesty~\subref{img:komp4} sa cesta skráti približne na polovicu.}
  
 Druhou heuristikou je kompresia cesty. Algoritmov na efektívnu kompresiu 
 cesty je veľa \citep{paths2}, tu popíšeme tie najefektívnejšie. Prvou z nich 
-je \emph{úplná kompresia} \citep{comp1}. Pri vykonávaní operácie \find, po 
+je \emph{úplná kompresia} \citep{comp1}. Pri vykonávaní operácie $\find(x)$, po 
 tom, ako nájdeme zástupcu, napojíme všetky vrcholy po ceste priamo pod koreň 
 (obr.~\ref{img:komp2}). Toto síce trochu spomalí prvé hľadanie, ale výrazne 
 zrýchli ďalšie hľadania pre všetky prvky na ceste ku koreňu. Druhou 
 heuristikou je \emph{delenie cesty} \citep{comp2}. Pri vykonávaní operácie 
-\find\ pripojíme každý vrchol v ceste od vrcholu $x$ po koreň stromu na otca 
+$\find(x)$ pripojíme každý vrchol v ceste od vrcholu $x$ po koreň stromu na otca 
 jeho otca (obr.~\ref{img:komp3}). Treťou heuristikou je \emph{pólenie cesty} 
-\citep{comp2}. Pri vykonávaní operácie \find\  pripojíme každý druhý vrchol 
+\citep{comp2}. Pri vykonávaní operácie $\find(x)$  pripojíme každý druhý vrchol 
 v ceste od vrcholu $x$ po koreň stromu na otca jeho otca 
 (obr.~\ref{img:komp4}).
 
 Časová zložitosť union-findu záleží od toho, koľko prvkov je v množinách a koľko je 
 operácií celkovo vykonaných operácií. Všetky uvedené spôsoby ako vykonať 
-operáciu \find\ sa dajú použiť s obomi realizáciami operácie \union. 
+operáciu $\find(x)$ sa dajú použiť s obomi realizáciami operácie $\union$. 
 Počet prvkov označme $n$ a počet operácií $m$. V praxi je zvyčajne počet 
 operácií oveľa väčší ako počet prvkov. Pri tomto predpoklade ($m\geq n$) je 
 pri použití spájania podľa ranku časová zložitosť pre algoritmus bez kompresie 
