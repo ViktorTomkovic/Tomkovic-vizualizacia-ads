@@ -177,7 +177,6 @@ Nedalo sa rýchlo dostať ku stavu, kedy je na štruktúre vykonaných veľa ope
 a pokračovať z tohto stavu ďalej. Toto môže byť nepríjemné v prípade, že si 
 chce používateľ len pripomenúť na už existujúcej štruktúre ako algoritmus 
 funguje, prípadne ako štruktúra po vykonaných operáciách vyzerá.
-
 % \todo{
 % Cieľom tejto etapy je oboznámenie sa s prostredím, v ktorom bude aplikácia používaná. 
 % Dôraz sa kladie na hlbšie pochopenie interakcie aplikácie s prostredím. 
@@ -209,13 +208,30 @@ aby bola dátová štruktúra od začiatku naplnená (veľa krát sa algoritmy
 vysvetlujú na pripravenej dátovej štruktúre) a taktiež, aby bolo prostredie 
 uživateľsky príjemné.
 
+Softvér ako taký má vizualizovať tieto veci:
+\begin{itemize}
+\item dátovú štruktúru pre disjunktné množiny reprezentovanú stromom a na nej 
+tieto algoritmy:
+	\begin{itemize}
+	\item naivné spájanie, spájanie podľa ranku;
+	\item nekomprimované hľadanie, hľadanie s jednoduchou kompresiou, hľadanie s 
+	delením cesty, hľadanie s pólením cesty.
+	\end{itemize}
+\item písmenkový strom (trie) a na ňom tieto algoritmy:
+	\begin{itemize}
+	\item vkladanie slova;
+	\item testovanie na prítomnosť slova;
+	\item mazanie slova.
+	\end{itemize}
+\item sufixový strom a jeho vytváranie pomocou Ukkonenovho algoritmu.
+\end{itemize}
+
 \subsection{Prevádzkové požiadavky}
 
 Pretože ľudia používajú rôzne operačné systémy a softvér nepracuje so 
 špecifickými systémovými zdrojmi je potrebné, aby bola aplikácia nezávislá 
 od operáčného systému. Keďže má byť dostupná na študentské účely, nemala by 
 byť hardvérovo náročná.
-
 % \todo{
 % Východiskom tejto etapy je etapa analýzy. 
 % Zaoberá sa úlohami, ktoré má aplikácia zabezpečiť. 
@@ -270,7 +286,55 @@ technológie a zameraniu projektu nebolo potrebné použiť viac technológií.
 
 \subsection{Rozhranie aplikácie}
 
+Pre potreby softvéru je potrebné zachovať súdržnosť. Rozhranie vizualizácií 
+bude podobné ako všetkých iných štruktúr. Vstupné dáta budú zadávané do 
+vstupného textového poľa, alebo klikaním myšou. Podľa stlačeného tlačidla sa 
+spustí daný proces. Výstupne údaje budú prezentované vo vykresľovacom okne pre 
+dátovú štruktúru a vo výpise pre komentáre. Vykreslená štruktúra sa bude dať 
+zväčšiť, zmenšiť a posunúť pomocou myšky.
 
+Pre každú dátovu štruktúru je potrebné zabezpečiť vstupné textové pole, 
+prípadne dodatočné vstupné metódy a tlačidlá pre všetky operácie.
+
+\subsubsection{Union-find}
+
+Pre union-find je potrebné zabezpečiť vstupné textové pole, tlačidlá pre 
+operácie $\union$ a $\find$, vyberanie vstupných prvkov myšou, možnosť výberu 
+medzi naivným spájaním a spájaním podľa ranku a medzi hľadaním zástupcu bez 
+kompresie, s jednoduchou kompresiou, delením cesty a pólením cesty (popísané 
+v kapitole \ref{chap:uf}).
+
+\subsubsection{Písmenkový strom}
+
+Pri písmenkovom strome je nutné zabezpečiť vstupné pole tak, aby sa do systému 
+dostali slová, len s abecedou, ktorú chceme. Pre nás abecedu tvoria veľké 
+písmená anglickej abecedy. Ďalej je potrebné, aby sa dal pridať do stromu 
+ucelenejší text. Na vykonávanie operácií $\put$, $\find$ a $\delete$ je 
+potrebné implementovať tlačidlá.
+
+\subsubsection{Sufixový strom}
+
+Sufixový strom je potrebné vytvoriť zo vstupného slova. Preto treba na tento 
+účel implementovať jedno tlačidlo.
+
+\subsection{Prepojenie s predošlým systémom}
+
+Po implementácií má systém tvoriť jeden celok, preto treba dbať na celistvosť 
+a podobný štýl programovania. Na jednotlivé implementovanie obrazoviek, 
+vstupných polí a tlačidiel je nutné použiť už existujúce rozhranie a tak isto 
+na implementáciu vizualizácie treba použiť rovnaký systém, ktorý vyžaduje 
+dedenie z prepripravených abstraktných tried.
+
+V hornej lište aplikácie bolo menu na výber dátových štruktúr a menu 
+na výber jazyka. Systém fungoval na princípe kontajnera inštanciovaných tried 
+udržiavajúcich jednotlivé obrazovky. Objekty mali priradenú dátovú štruktúru. 
+Panel obsahoval plochy pre vykresľovanie, výpis komentárov (toho, čo sa bude 
+diať) a ovládacie tlačidlá. Pri vykonaní zvolenej operácie sa spustilo nové 
+vlákno vykonávajúce danú operáciu a obsluhujúcu obrazovku.
+
+Všetky doterajšie vizualizácie pracovali s binárnymi stromami. Naše dátové 
+štruktúry sú však všeobecné stromy, respektíve lesy. Preto je nutné 
+implementovať triedu na prácu so všeobecnými stromami.
 % \todo{
 % V tejto etape sa ujasňuje koncepcia systému. 
 % Navrhne sa jeho dekompozícia, určia sa vzťahy medzi časťami systému a ohraničenia funkcionality. 
@@ -285,5 +349,4 @@ technológie a zameraniu projektu nebolo potrebné použiť viac technológií.
 % plán realizácie systému a stanovia sa podmienky, za akých bude používateľ akceptovať produkt. 
 % Odhadnú sa potrebné ľudské a materiálne zdroje a navrhne sa postup zaškolovania používateľov.
 % }
-
 
