@@ -5,7 +5,7 @@
 vyhľadávacím stromom je hlavný rozdiel v tom, že kľúče nie sú uložené 
 vo vrcholoch, ale samotná poloha v strome určuje kľúč (slovo). 
 
-\section{Popis}
+\section{Popis}\label{sec:trie:popis}
 Písmenkový strom je \emph{zakorenený strom}, v~ktorom každá hrana obsahuje 
 práve jeden znak z abecedy alebo \emph{ukončovací znak}. Teda, každá cesta 
 z koreňa do listu so znakmi $w_1, w_2, \ldots, w_n, \uz$ prirodzene 
@@ -22,6 +22,7 @@ poskytuje tieto tri operácie:
 Všetky operácie začínajú v koreni a ku slovu pridávajú ukončovací znak, 
 teda pracujú s reťazcom $\k\uz$. 
 
+\paragraph{Vkladanie slova.}%
 Operácia $\put(\k)$ vloží do stromu vstupný reťazec tak, že z reťazca číta znaky 
 a prechádza po príslušných hranách. Ak hrana s daným symbolom neexistuje, 
 pridá ju (pozri obr.~\ref{img:trieinsert}).
@@ -35,10 +36,12 @@ so znakmi {\tt R}, {\tt N}, {\tt E} a \uz.}
 \label{img:trieinsert} 
 \end{figure}
 
+\paragraph{Hľadanie slova.}%
 Operácia $\find(\k)$ sa spustí z koreňa podľa postupnosti znakov. Ak hrana, 
 po ktorej sa má spustiť neexistuje, dané slovo sa v strome nenachádza. 
 Ak prečíta celý vstupný reťazec, dané slovo sa v strome nachádza.
 
+\paragraph{Mazanie slova.}%
 Operácia $\delete(\k)$ najprv pomocou operácie $\find(\k)$ zistí umiestnenie slova. 
 Ak sa slovo v strome nachádza, algoritmus odstráni hranu s ukončovacím 
 znakom a vrchol, ktorý bol na nej zavesený. V tomto štádiu sa nám môže 

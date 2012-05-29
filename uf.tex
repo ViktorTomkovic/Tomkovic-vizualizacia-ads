@@ -40,18 +40,21 @@ jednej množine a korene stromov sú zástupcovia množín. Pri implementácií 
 stačí pre každý prvok $x$ udržiavať smerník $p(x)$ na jeho otca
 (pre koreň je $p(x)=\nul$).
 
+\paragraph{Vytváranie prvkov.}%
 Operácia $\makeset(x)$ teda vytvorí nový prvok $x$ a nastaví $p(x) = \nul$. 
 
+\paragraph{Hľadanie zástupcu.}%
 Operáciu $\find(x)$ vykonáme tak, že budeme sledovať cestu po smerníkoch, až 
 kým nenájdeme zástupcu. 
 
+\paragraph{Spájanie množín.}%
 Operáciu $\union(x, y)$ ide najjednoduchšie vykonať tak, že presmerujeme smerník 
 $p(y)$ na prvok $x$, teda $p(y) \gets x$. 
 Môžeme ľahko pozorovať, že takýto \emph{naivný} spôsob je neefektívny, 
 lebo nám operácia $\find(x)$ v najhoršom prípade, na $n$ prvkoch, trvá $\Omega(n)$ 
 krokov. 
 
-\smallskip
+\bigskip
 Existujú dva prístupy ako zlepšiť operácie a tým aj zrýchliť ich vykonanie. 
 Sú to: heuristika \emph{spájanie podľa ranku} a rôzne heuristiky na 
 \emph{kompresiu cesty}. 

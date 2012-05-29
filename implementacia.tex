@@ -1,9 +1,9 @@
 \chapter{Implementácia softvéru}\label{chap:implementacia}
 
 V tejto kapitole postupne uvedieme realizáciu návrhu popísaného 
-v~kapitole~\ref{chap:popis}. Najskôr si popíšeme ako sme vizualizovali dané 
+v~kapitole~\ref{chap:popis}. Popíšeme ako sme vizualizovali dané 
 dátové štruktúry a algoritmy (sekcia \ref{sec:im:vis}) a ukážeme si 
-implementáciu vybraných tried (sekcia \ref{sec:im:im}). 
+implementáciu a ovládanie aplikácie (sekcia \ref{sec:im:im}). 
 Na záver uvedieme ako dopadlo testovanie softvéru (sekcia \ref{sec:im:test}).
 % \todo{
 % Programovo realizujeme podrobný návrh databázovej aplikácie. 
@@ -62,9 +62,25 @@ sa dá naraz vložiť súvislý text.
 
 \subsubsection{Operácia $\put$}
 
+Aby bolo zreteľné, aké slovo vkladáme, znázorňujeme zbytok vkladaného slova 
+pri mieste, kde sa práve v strome nachádzame. Časť, ktorú sme vložili a aj 
+časť, ktorú ideme vložiť vypisujeme bielou na modrom pozadí. Miesto, na ktoré 
+sa presunieme, prípadne kam ideme pripájať, sme označili ružovou farbou. 
+Ukončovací znak \uz\ sme vykreľovali tmavšie a menším písmom.
+
 \subsubsection{Operácia $\find$}
 
+Podobne ako pri vkladaní slova, aj pri vizualizácií hľadania slova, sme 
+použili pomocnú bublinu so zbytkom nespracovaného vstupu. Na rozdiel od 
+vkladania sme použili ružovú farbu. Na znázornenie množiny prvkov, kde sa môže 
+vyskytovať následujúce písmenko sme použili šedú farbu.
+
 \subsubsection{Operácia $\delete$}
+
+Mazanie slova z písmenkového stromu sme implementovali ako nájdenie slova a 
+následné zmazanie prípadnej mŕtvej vetvy (popísané v sekcii 
+\ref{sec:trie:popis}). Na nájdenie slova sme použili ten istý farebný princíp, 
+ako pri operácií $\find$. Mŕtvu vetvu sme zvýraznili červenou farbou.
 
 \subsection{Sufixový strom}
 
@@ -72,20 +88,34 @@ Sufixový strom sme vizualizovali podobne ako písmenkový strom, použili sme
 Walkerov algoritmus \citep{walker} so zakrivenými hranami. Sufixové linky 
 sme znázornili šedými šípkami. Na rozdiel od písmenkového stromu sa v 
 sufixovom strome vyskytujú na hranách reťazce. Tie sme znázornili ako viac 
-spojených hrán.
+spojených hrán a text sme spojili.
 
 \subsubsection{Ukkonenov algoritmus}
 
 Pri vizualizácií algoritmu oznažujeme hrany, pre ktoré platí prvý prípad, 
 ružovou farbou. Hranu, pre ktorú platí prvý prípad a je pridaná ako posledná, 
 označujeme zelenou farbou. Z tejto hrany začína "zaujímavejšia" časť 
-rozširovania stromu.
+rozširovania stromu. Pri pridávaní sufixov do stromu sme použili modrú farbu.
 
-\section{Implementácia tried}\label{sec:im:im}
+\section{Popis ovládania}\label{sec:im:im}
 
 
 \section{Testovanie, prevádzka a údržba}\label{sec:im:test}
 
+Pri testovaní aplikácie sa nevyskytli nečakané chyby. Za najväčšie nedostatky 
+sme považovali občas nezrozumiteľné komentáre a neoptimálne znázornenie 
+Ukkonenovho algoritmu. Pri premietaní cez projektor sme prišli na nedostatok: 
+niektoré farby sú príliš sýte a preto sa kontrast medzi písmom a pozadím zdá 
+byť malý a farby príliš tmavé. Tento problém sa vyskytoval len občas, ale 
+pri bežnom osvetlení.
+
+Softvér nepotrebuje špecifickú údržbu, keďže sa jedná o samostatnú aplikáciu. 
+Avšak vhodné je sledovať aktualizácie, ktoré opravujú chyby. Vývoj a aj 
+najnovšie verzie sú voľne dostupné na systéme pre správu zdrojových kódov 
+Github, konkrétne na webovej stránke: \url{https://github.com/kuk0/alg-vis}. 
+Stabilná verzia s popisom algoritmov sa nachádza na stránke: 
+\url{http://people.ksp.sk/~kuko/gnarley-trees}. Na oboch sídlach sa nachádzajú 
+kontakty, ktorými môže používateľ upozorniť na chyby v aplikácií.
 % \todo{
 % Testovanie sa vykonáva v prevádzkovom prostredí zvyčajne u používateľa. 
 % Vykonávame testovanie jednotlivých  dekomponovaných častí a chovanie aplikácie ako celku. 
