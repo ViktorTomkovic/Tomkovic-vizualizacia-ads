@@ -6,12 +6,6 @@ vyhľadávacím stromom je hlavný rozdiel v tom, že kľúče nie sú uložené
 vo vrcholoch, ale samotná poloha v strome určuje kľúč (slovo). 
 
 \section{Popis}\label{sec:trie:popis}
-Písmenkový strom je \emph{zakorenený strom}, v~ktorom každá hrana obsahuje 
-práve jeden znak z abecedy alebo \emph{ukončovací znak}. Teda, každá cesta 
-z koreňa do listu so znakmi $w_1, w_2, \ldots, w_n, \uz$ prirodzene 
-zodpovedá slovu $w=w_1w_2\cdots w_n$. \emph{Ukončovací znak} je ľubovoľný, 
-dopredu dohodnutý symbol, ktorý sa v abecede nenachádza (napr. \uz). 
-
 Písmenkový strom je \emph{asociatívne pole (slovník)}, čiže 
 poskytuje tieto tri operácie:
 \begin{itemize}
@@ -19,7 +13,13 @@ poskytuje tieto tri operácie:
 \item $\find(\k)$ -- zistí, či sa v strome slovo $\k$ nachádza;
 \item $\delete(\k)$ -- odstráni zo stromu slovo $\k$.
 \end{itemize}
-Všetky operácie začínajú v koreni a ku slovu pridávajú ukončovací znak, 
+Písmenkový strom je \emph{zakorenený strom}, v~ktorom každá hrana obsahuje 
+práve jeden znak z abecedy alebo \emph{ukončovací znak}. Teda, každá cesta 
+z koreňa do listu so znakmi $w_1, w_2, \ldots, w_n, \uz$ prirodzene 
+zodpovedá slovu $w=w_1w_2\cdots w_n$. \emph{Ukončovací znak} je ľubovoľný, 
+dopredu dohodnutý symbol, ktorý sa v abecede nenachádza (napr. \uz). 
+
+Všetky tri operácie začínajú v koreni a ku slovu pridávajú ukončovací znak, 
 teda pracujú s reťazcom $\k\uz$. 
 
 \paragraph{Vkladanie slova.}%
@@ -81,16 +81,17 @@ tieto nároky zmenšiť.
 Písmenkové stromy sa podobajú na \emph{konečné automaty}. 
 Vznikli rôzne modifikácie stromov na automaty, ktorých hlavnou výhodou je, 
 že v komprimovanej podobe spájajú nielen predpony, ale aj prípony slov 
-a teda v slovách ľudských jazykov výrazne znižujú pamäťový priestor potrebný 
+a teda v slovách prirodzených jazykov výrazne znižujú pamäťový priestor potrebný 
 na uchovanie dátovej štruktúry. Vďaka tomu sa využívajú na jazykovú korekciu, 
 automatické dopĺňanie slov a podobne \citep{scrabble,ca}. 
 
 Ďalšie použitie písmenkového stromu je pri triedení zoznamu slov. 
 Všetky slová sa pridajú do stromu a potom sa spraví \emph{preorderový prechod} 
-stromu. Túto myšlienku spracovali \citet{burstsort1} a veľmi výrazne zrýchlil 
+stromu. Túto myšlienku spracovali \citet{burstsort1} a veľmi výrazne zrýchlili 
 triedenie dlhých zoznamov slov. Neskôr tento algoritmus vylepšili 
-\citet{burstsort2}. Kvôli tomu, ako algoritmus pracuje, 
-sa nazýva \emph{burstsort}.
+\citet{burstsort2}. Algoritmus používa \trie\ s poľami, ktoré sa môžu zväčšiť. 
+Pokiaľ sa pole zväčší za povolenú hranicu, "prepáli" sa. Preto bol 
+algoritmus nazvaný \emph{burstsort}.
 
 % Špeciálnym použitím písmenkového stromu je vytvorenie stromu zo všetkých 
 % prípon slova. Táto dátova štruktúra sa nazýva \emph{sufixový strom} a dá sa 
