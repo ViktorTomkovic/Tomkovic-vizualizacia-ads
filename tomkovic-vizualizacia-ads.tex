@@ -20,7 +20,8 @@
 
 \usepackage[
    backend=biber      % if we want unicode 
-  ,style=iso-authoryear % iso-authoryear or iso-numeric for numeric citation method
+%  ,style=iso-authoryear % iso-authoryear or iso-numeric for numeric citation method
+  ,style=authoryear 
 %  ,style=authoryear-comp 
   ,babel=other        % to support multiple languages in bibliography
   %,sortlocale=cs_CZ   % locale of main language, it is for sorting
@@ -56,11 +57,11 @@
 \usepackage{array}
   
 %%definície konštánt a makier
-\def \nazovUniverzity{Univerzita Komenského v Bratislave}
+\def \nazovUniverzity{Univerzita Komensk{é}ho v Bratislave}
 \def \NazovUniverzity{\textbf{\Large \sc \nazovUniverzity}} %\sc pre smallcaps
 \def \nazovFakulty{Fakulta matematiky, fyziky a informatiky}
 \def \NazovFakulty{\textbf{\large \sc \nazovFakulty}}
-\def \nazovDiela{Vizualizácia algoritmov a dátových štruktúr}
+\def \nazovDiela{Vizualizácia union-findu, písmenkového stromu a sufixového stromu}
 \def \NazovDiela{\LARGE{\em \nazovDiela}}
 \def \podnazovDiela{nie je}
 \def \PodazovDiela{\large{\em \podnazovDiela}}

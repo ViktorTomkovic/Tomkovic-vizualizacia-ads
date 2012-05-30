@@ -37,7 +37,8 @@ Vybrané prvky sú zvýraznené.
 Hľadanie reprezentanta množiny sme vizualizovali tak, že sme vybratý prvok 
 označili, vyznačili sme cestu do koreňa a reprezentanta množiny 
 (algoritmus dopredu nepozná reprezentanta, ale v rámci vizualizácie sme to 
-považovali za vhodné). Následne sme vykonali kompresiu. Cestu sme nechali 
+považovali za vhodné). Následne sme vykonali kompresiu, aktívny vrchol je 
+modrý. Cestu sme nechali 
 znázornenú šedou farbou, aby bolo vidieť ako vyzerá cesta pred a po prevedení 
 algoritmu. 
 
@@ -98,6 +99,40 @@ označujeme zelenou farbou. Z tejto hrany začína "zaujímavejšia" časť
 rozširovania stromu. Pri pridávaní sufixov do stromu sme použili modrú farbu.
 
 \section{Popis ovládania}\label{sec:im:im}
+
+Obrazovka softvéru sa skladá z menu na výber dátových štruktúr, menu na výber 
+jazyk, obrazovky na vykresľovanie, ovládacích tlačidiel a obrazovky na výpis 
+komentárov.
+
+Keď si z menu vyberieme dátovú štruktúru zobrazí sa inicializovaná dátová 
+štruktúra a príslušné tlačidlá. Celá dátová štruktúra sa dá posúvať ťahaním 
+myšou, približovať alebo odďalovať použitím kolieska myši, alebo automaticky 
+vycentrovať a priblížiť pomocou tlačidla.
+
+\subsection{Union-find}
+
+\paragraph{Vstup.} Vstup zadávame do vstupného poľa alebo vyberieme prvok 
+myšou. Prioritu majú prvky vybrané myšou. Pre operáciu $\find$ sa vyberie prvý 
+prvok, pre operáciu $\union$ sa vyberú prvé dva prvky. Pokiaľ je zadaný menší 
+počet prvkov náhodne sa doplnia. 
+
+\paragraph{Náhodné spojenie.} Tlačidlo pre vykonanie viacerých náhodných 
+spojení berie parameter -- počet spojení zo vstupného poľa. Pokiaľ nie je 
+hodnota zadaná, za parameter sa berie základná hodnota.
+
+\subsection{Písmenkový a sufixový strom}
+
+\paragraph{Vstup.} Do vstupného poľa zadávame slová oddelené medzerou. Textový 
+vstup sa pred pridávaním ošetrí: odstráni sa diakritika, interpunkcia a čísla. 
+Následne sa text prevedie na veľké písmená a za každé slovo sa pridá 
+ukončovací znak (\uz). Prázdne slovo sa do stromu dá pridať zadaním vstupného 
+reťazca "\uz". Pokiaľ je vstup prázdny, vykoná sa pridanie náhodného slova 
+podľa nastaveného jazyka.
+
+\paragraph{Náhodné vloženie.} Tlačidlo pre vykonanie viacerých náhodných 
+pridaní funguje ako pri union-finde. Slová, ktoré pridá, sú vybraté z databázy 
+slov nastaveného jazyka. Sufixový strom sa vytvára pre jedno slovo a preto 
+nemá zmysel pridávať viacero náhodných slov.
 
 
 \section{Testovanie, prevádzka a údržba}\label{sec:im:test}
