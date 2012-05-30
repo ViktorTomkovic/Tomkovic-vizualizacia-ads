@@ -2,11 +2,10 @@
 
 V predchádzajúcich kapitolách sme si popísali niektoré dátové štruktúry a 
 vybrané algoritmy. Hlavnou náplňou je ich vizualizácia. Ako sme povedali v 
-úvode, vizualizácia je názorné vykreslenie dátovej štruktúry, pričom jej 
-reprezentácia v pamäti je nepotrebná (no občas je názorná aj tá). Vizualizácia 
+úvode, vizualizácia je názorné vykreslenie dátovej štruktúry. Vizualizácia 
 algoritmu je znázornenie priebehu algoritmu na dátovej štruktúre. 
 
-\section{Analýza}
+\section{Analýza existujúcich riešení}
 
 Softvér vizualizuje dátové štruktúry, algoritmy na nich a popisuje ako 
 algoritmy fungujú. Preto sa hodí ako učebná pomôcka pre študentov na 
@@ -19,7 +18,7 @@ a je súkromná. Preto porovnám len tie vizualizácie, ktoré sú vybrané skup
 ľudí venujúcej sa vizualizácií algoritmov; skupinou {\tt algoviz.org}. 
 Analýza prebehla v máji 2012.
 
-\subsection{Union/Find Algorithm Visualization}\label{sec:ufav}
+\subsection{Union/Find Algorithm Visualization (union-find)}\label{sec:ufav}
 Tento malý applet je súčasťou väčšieho projektu \emph{Virginia Tech Algorithm 
 Visualizations}. Applet je implementovaný v programovacom jazyku \Java\ a po
 grafickej stránke je veľmi podobný ako zvyšok projektu. Softvér je vydaný pod 
@@ -31,11 +30,11 @@ Je dostupný na: \url{http://research.cs.vt.edu/AVresearch/UF/}.
 Applet poskytuje operácie $\union$ a $\find$ na ôsmich, dvanástich, šestnástich 
 alebo dvadsiatich vrcholoch. Na obrázku \ref{img:vis:ufav} je obrazovka 
 appletu. Môžeme vidieť, že dátová štruktúra je vykreslená vpravo. Použitý je 
-jednoduchý algoritmus. Vpravo dole je  vykreslená reprezentácia v poli a 
+jednoduchý algoritmus. Vpravo dole je vykreslená reprezentácia v poli a 
 pre každý vrchol je vypísaný otec. Vľavo je riadne vypísaný zoznam vykonaných 
 krokov, ktorý je navyše farebne odlíšený. Farby vo výpise a vo vizualizácií 
-spolu korešpondujú. Vľavo dole sú nastavenia. Z intuitívneho prehľadu teda 
-applet poskytuje operácie $\union$ s heuristikou na spájanie a $\find$ s 
+spolu korešpondujú. Vľavo dole sú nastavenia. 
+Applet poskytuje operácie $\union$ s heuristikou na spájanie a $\find$ s 
 možnosťami bez kompresie a s kompresiou cesty 
 (popísané v sekciách \ref{sec:komp-union} a \ref{sec:komp-cesta}).
 
@@ -54,11 +53,11 @@ dátovej štruktúry a prebiehajúceho algoritmu.}
 Softvér poskytuje priestor len na malé príklady. Na 
 pochopenie ako fungujú algoritmy to je postačujúce. Ovládanie je intuitívne.
 
-\subsection{AlVie}\label{sec:alvie}
-\citat{%
-The girl's name Alvie, also used as boy's name Alvie, is a variant of Alvina 
-(old English), and the meaning of Alvie is "elf or magical being, friend".}{%
-\url{http://alvie.algoritmica.org/alvie3/quickstart}}
+\subsection{AlVie (union-find)}\label{sec:alvie}
+% \citat{%
+% The girl's name Alvie, also used as boy's name Alvie, is a variant of Alvina 
+% (old English), and the meaning of Alvie is "elf or magical being, friend".}{%
+% \url{http://alvie.algoritmica.org/alvie3/quickstart}}
 
 AlVie je veľký projekt. Je to prostredie na vizualizáciu algoritmov, 
 vytváranie vlastných vizualizácií a veľmi flexibilné pridávanie vlastného 
@@ -71,9 +70,7 @@ prehľadný popis funkcionality a používania. Aplikácia ponúka množstvo
 nastavení a veľa možností exportovania danej vizualizácie. Avšak nepodarilo sa 
 mi nastaviť si vlastný vstup, preto som ostal len pri základnej možnosti. 
 Union-find je tu bohužiaľ implementovaný nie cez les, ale ako spájaný zoznam 
-(obr. \ref{img:vis:alvie}), 
-čo asymptoticky spomaľuje beh algoritmu, takže sa v praxi s takouto 
-implementáciou nedá stretnúť. 
+(obr. \ref{img:vis:alvie}), čo asymptoticky spomaľuje beh algoritmu.
 
 \begin{figure}
 \centering
@@ -85,11 +82,11 @@ pseudokód.}
 \label{img:vis:alvie}
 \end{figure}
 
-Napriek veľkému množstvu dodávaných algoritmov, veľkému možností nastavení a 
+Napriek veľkému množstvu dodávaných algoritmov, nastavení a 
 zobrazenému pseudokódu počas vizualizácie má tento softvér nevýhody v podobe 
 horšieho ovládania a neoptimálnej implementácie disjunktných množín.
 
-\subsection{Data Structure Visualizations}\label{sec:galles}
+\subsection{Data Structure Visualizations (union-find)}\label{sec:galles}
 
 Vizualizácia union-find algoritmu je v tomto prípade súčasťou veľkého projektu 
 využívajúceho veľa technológií (Flash, \Java, {\tt HTML5}). Autorom je David 
@@ -119,7 +116,7 @@ Aplikácia je dobre popísaná, dá sa na nej nastaviť všetko potrebné vráta
 rýchlosti premietania a veľkosti vykreľovacej plochy. Nevýhodou je, že 
 nevypisuje, čo sa práve deje a teda používateľ musí algoritmus poznať.
 
-\subsection{TRAKLA2}\label{sec:trakla}
+\subsection{TRAKLA2 (trie)}\label{sec:trakla}
 
 TRAKLA2 je učebná pomôcka vyvíjaná skupinou ľudí "Software visualization 
 group". Všetci sú študenti alebo zamestnanci na Helsinskej technickej 
@@ -159,22 +156,23 @@ nevykonával v správnom poradí, nebola mi uznaná správna odpoveď aj keď
 výsledok správny bol. Toto je ale špecifická chyba len pre písmenkový strom 
 (pre iné dátové štruktúry môže poradie pridávania zmeniť reprezentáciu).
 
-\subsection{Ďalšie vizualizácie}
-
-Uviedol som tu tri podobné softvéry pre union-find a jeden pre písmenkový 
-strom, ale samozrejme existuje veľa iných vizualizácií. Bohužiaľ veľa z nich 
-skončí odovzdaná u učiteľa, je nekvalitná, alebo nepublikovaná a tak sa z nich 
-stávajú neprístupné aplikácie.
+\subsection{Sufixové stromy}
 
 Na sufixové stromy, konkrétne Ukkonenov algoritmus, ktorý sme vizualizovali, 
-sa podarilo nájsť len jednu a aj to textovú vizualizáciu. Na jednoduché 
+sa podarilo nájsť len jednu a aj to textovú vizualizáciu. 
+
+\subsection{Ďalšie vizualizácie}
+
+Uviedli sme tri softvéry pre union-find a jeden pre písmenkový 
+strom. Na jednoduché 
 písmenkové stromy sme viac vizualizácií nenašli. Ďalšie programy vizualizovali 
 textové dáta alebo iné modifikácie písmenkových stromov (niektoré sú uvedené v 
 sekcií \ref{sec:trie:pouzitie}).
 
 Všetky aplikácie, ktoré sme analyzovali, však mali jeden spoločný nedostatok. 
 Nedalo sa rýchlo dostať ku stavu, kedy je na štruktúre vykonaných veľa operácií 
-a pokračovať z tohto stavu ďalej. Toto môže byť nepríjemné v prípade, že si 
+a pokračovať z tohto stavu ďalej. Na prázdnej dátovej štruktúre nemusí byť 
+dobre vidieť priebeh operácie. Taktiež to môže byť nepríjemné v prípade, že si 
 chce používateľ len pripomenúť na už existujúcej štruktúre ako algoritmus 
 funguje, prípadne ako štruktúra po vykonaných operáciách vyzerá.
 % \todo{
@@ -183,6 +181,7 @@ funguje, prípadne ako štruktúra po vykonaných operáciách vyzerá.
 % Ak existujú, treba vykonať aj analýzu podobných systémov.
 % }
 
+\clearpage
 \section{Špecifikácia požiadaviek}
 
 Počas analýzy sme zistili, že vizualizácie mali nedostatky najmä v tom, že sa 
@@ -193,22 +192,20 @@ obtiažne vôbec vybudovať väčšiu dátovú štruktúru, na ktorej by boli al
 a hlavne ich efektivita viditeľnejšia. Pri niektorých vizualizáciach nebolo 
 jasne viditeľné, čo sa ide vykonať.
 
-\subsection{Prostredie}
+\subsection{Požiadavky}
 
 Naša aplikácia bude používaná najmä študentmi, ktorí si chcú zopakovať učivo 
 z prednášok, alebo učiteľmi, ktorí túto aplikáciu budú chcieť využívať na 
 hodinách.
 
-\subsection{Požiadavky}
-
 Preto sa nám zdalo byť vhodné, aby študent dostával výpisy o tom, čo sa bude 
-diať a aby bolo prostredie pre ňho dostatočne uživateľsky príjmené. Pre 
+diať a aby bolo prostredie pre študenta dostatočne používateľsky príjmené. Pre 
 učiteľa je potrebné, aby sa aplikácia prijateľne zobrazovala cez projektor, 
-aby bola dátová štruktúra od začiatku naplnená (veľa krát sa algoritmy 
+aby bola dátová štruktúra od začiatku naplnená (veľakrát sa algoritmy 
 vysvetlujú na pripravenej dátovej štruktúre) a taktiež, aby bolo prostredie 
-uživateľsky príjemné.
+používateľsky príjemné.
 
-Softvér ako taký má vizualizovať tieto veci:
+Softvér ako taký mal vizualizovať tieto veci:
 \begin{itemize}
 \item dátovú štruktúru pre disjunktné množiny reprezentovanú stromom a na nej 
 tieto algoritmy:
@@ -229,8 +226,8 @@ tieto algoritmy:
 \subsection{Prevádzkové požiadavky}
 
 Pretože ľudia používajú rôzne operačné systémy a softvér nepracuje so 
-špecifickými systémovými zdrojmi je potrebné, aby bola aplikácia nezávislá 
-od operáčného systému. Keďže má byť dostupná na študentské účely, nemala by 
+špecifickými systémovými zdrojmi bolo potrebné, aby bola aplikácia nezávislá 
+od operačného systému. Keďže má byť dostupná na študentské účely, nemala by 
 byť hardvérovo náročná.
 % \todo{
 % Východiskom tejto etapy je etapa analýzy. 
@@ -248,57 +245,57 @@ byť hardvérovo náročná.
 
 \section{Návrh}
 
-Táto práca je pokračovaním práce Jakuba Kováča a preto návrh vychádza hlavne z 
+Táto práca je pokračovaním práce Jakuba Kováča a preto návrh vychádzal hlavne z 
 jeho práce. Našou hlavnou úlohou bolo implementovať vybrané dátové štruktúry a 
-algoritmy. V~následujúcich častiach si popíšeme požiadavky kladené na náš 
-softvér, či už z hladiska technického alebo používateľského, zvolené 
+algoritmy. V~nasledujúcich častiach sme popísali požiadavky kladené na náš 
+softvér, či už z hľadiska technického alebo používateľského, zvolené 
 technológie a rozhranie systému.
 % vzťahy medzi časťami softvéru, 
 %štruktúru dát a rozhranie systému.
 
 \subsection{Technické požiadavky}
 
-Softvér slúži na vizualizáciu a je potrebné ho implementovať multiplatformovo.
+Softvér slúži na vizualizáciu a bolo potrebné ho implementovať multiplatformovo.
 Taktiež slúži aj na opisovanie prebiehajúceho algoritmu, teda 
-je potrebná plocha na vykresľovanie, plocha na vypisovanie toho, čo sa deje, 
+bola potrebná plocha na vykresľovanie, plocha na vypisovanie toho, čo sa deje, 
 ovládacie prvky algoritmu a ovládacie prvky na výber dátových štruktúr.
 
-\subsection{Uživateľské požiadavky}
+\subsection{Používateľské požiadavky}
 
-Ako sme už naznačili používateľmi budú prevažne študenti a učitelia, veľmi 
-pravdepodobne informatiky. Preto je vhodné okrem obyčajného a pomalšieho 
+Ako sme už naznačili, používateľmi sú prevažne študenti a učitelia, veľmi 
+pravdepodobne informatiky. Preto bolo vhodné okrem obyčajného a pomalšieho 
 zadávania vstupu po jednej operácií vytvoriť prostredie, v ktorom sa bude dať 
 zadávať aj zložitejší vstup.
 
-Ďalej treba názorne vizualizovať dátové štruktúry a všetko potrebné ku 
-pochopeniu algoritmov. Konkrétne pri union-finde ide o prípadné ranky, 
-pri písmenkovom strome odstraňovanie vetiev, prehľadné vykresľovanie pri 
+Ďalej bolo potrebné názorne vizualizovať dátové štruktúry a všetko podstatné k 
+pochopeniu algoritmov. Konkrétne pri union-finde išlo o prípadné ranky, 
+pri písmenkovom strome o odstraňovanie vetiev, prehľadné vykresľovanie pri 
 prebiehajúcich algoritmoch a pri sufixovom strome sufixové linky, práve 
 pridávaný sufix a celé slovo, ktorému sufixový strom budujeme.
 
 \subsection{Použité technológie}
 
-Keďže projekt je pokračovaním predošlej práce za hlavný programovací jazyk je 
-zvolená \Java. Na grafické znázornenie sú to jednotlivé triedy balíkov AWT a 
-Swing. Na generovanie náhodných reťazcov používame špeciálne upravenú triedu 
-s návrhovým vzorom \emph{singleton}. Vďaka celkovej nenáročnosti na 
+Keďže projekt bol pokračovaním predošlej práce za hlavný programovací jazyk 
+bola zvolená \Java. Na grafické znázornenie sú to jednotlivé triedy balíkov 
+AWT a Swing. Na generovanie náhodných reťazcov sme použili špeciálne upravenú 
+triedu s návrhovým vzorom \emph{singleton}. Vďaka celkovej nenáročnosti na 
 technológie a zameraniu projektu nebolo potrebné použiť viac technológií.
 
 \subsection{Rozhranie aplikácie}
 
-Pre potreby softvéru je potrebné zachovať súdržnosť. Rozhranie vizualizácií 
-bude podobné ako všetkých iných štruktúr. Vstupné dáta budú zadávané do 
+Rozhranie vizualizácií bolo podobné ako všetkých iných štruktúr 
+implementovaných v predošlej verzií softvéru. Vstupné dáta boli zadávané do 
 vstupného textového poľa, alebo klikaním myšou. Podľa stlačeného tlačidla sa 
-spustí daný proces. Výstupne údaje budú prezentované vo vykresľovacom okne pre 
-dátovú štruktúru a vo výpise pre komentáre. Vykreslená štruktúra sa bude dať 
+spustil daný proces. Výstupne údaje boli prezentované vo vykresľovacom okne 
+pre dátovú štruktúru a vo výpise pre komentáre. Vykreslená štruktúra sa dala 
 zväčšiť, zmenšiť a posunúť pomocou myšky.
 
-Pre každú dátovu štruktúru je potrebné zabezpečiť vstupné textové pole, 
+Pre každú dátovu štruktúru bolo potrebné zabezpečiť vstupné textové pole, 
 prípadne dodatočné vstupné metódy a tlačidlá pre všetky operácie.
 
 \subsubsection{Union-find}
 
-Pre union-find je potrebné zabezpečiť vstupné textové pole, tlačidlá pre 
+Pre union-find bolo potrebné zabezpečiť vstupné textové pole, tlačidlá pre 
 operácie $\union$ a $\find$, vyberanie vstupných prvkov myšou, možnosť výberu 
 medzi naivným spájaním a spájaním podľa ranku a medzi hľadaním zástupcu bez 
 kompresie, s jednoduchou kompresiou, delením cesty a pólením cesty (popísané 
@@ -306,24 +303,24 @@ v kapitole \ref{chap:uf}).
 
 \subsubsection{Písmenkový strom}
 
-Pri písmenkovom strome je nutné zabezpečiť vstupné pole tak, aby sa do systému 
-dostali slová, len s abecedou, ktorú chceme. Pre nás abecedu tvoria veľké 
-písmená anglickej abecedy. Ďalej je potrebné, aby sa dal pridať do stromu 
-ucelenejší text. Na vykonávanie operácií $\put$, $\find$ a $\delete$ je 
+Pri písmenkovom strome bolo nutné zabezpečiť vstupné pole tak, aby sa do systému 
+dostali slová, len s abecedou, ktorú chceme. Pre nás abecedu tvorili veľké 
+písmená anglickej abecedy. Ďalej bolo potrebné, aby sa dal pridať do stromu 
+ucelenejší text. Na vykonávanie operácií $\put$, $\find$ a $\delete$ bolo 
 potrebné implementovať tlačidlá.
 
 \subsubsection{Sufixový strom}
 
-Sufixový strom je potrebné vytvoriť zo vstupného slova. Preto treba na tento 
+Sufixový strom bolo potrebné vytvoriť zo vstupného slova. Preto treba na tento 
 účel implementovať jedno tlačidlo.
 
 \subsection{Prepojenie s predošlým systémom}
 
-Po implementácií má systém tvoriť jeden celok, preto treba dbať na celistvosť 
-a podobný štýl programovania. Na jednotlivé implementovanie obrazoviek, 
-vstupných polí a tlačidiel je nutné použiť už existujúce rozhranie a tak isto 
-na implementáciu vizualizácie treba použiť rovnaký systém, ktorý vyžaduje 
-dedenie z prepripravených abstraktných tried.
+Po implementácií mal systém tvoriť jeden celok, preto bola potreba dbať na 
+celistvosť a podobný štýl programovania. Na jednotlivé implementovanie 
+obrazoviek, vstupných polí a tlačidiel bolo nutné použiť už existujúce 
+rozhranie a tak isto na implementáciu vizualizácie bolo treba použiť rovnaký 
+systém, ktorý vyžadoval dedenie z predpripravených abstraktných tried. 
 
 V hornej lište aplikácie bolo menu na výber dátových štruktúr a menu 
 na výber jazyka. Systém fungoval na princípe kontajnera inštanciovaných tried 
@@ -332,8 +329,8 @@ Panel obsahoval plochy pre vykresľovanie, výpis komentárov (toho, čo sa bude
 diať) a ovládacie tlačidlá. Pri vykonaní zvolenej operácie sa spustilo nové 
 vlákno vykonávajúce danú operáciu a obsluhujúcu obrazovku.
 
-Všetky doterajšie vizualizácie pracovali s binárnymi stromami. Naše dátové 
-štruktúry sú však všeobecné stromy, respektíve lesy. Preto je nutné 
+Všetky predošlé vizualizácie pracovali s binárnymi stromami. Naše dátové 
+štruktúry však boli všeobecné stromy, respektíve lesy. Preto bolo nutné 
 implementovať triedu na prácu so všeobecnými stromami.
 % \todo{
 % V tejto etape sa ujasňuje koncepcia systému. 

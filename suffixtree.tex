@@ -2,38 +2,47 @@
 
 \emph{Sufixový strom} je písmenkový strom pre všetky \emph{sufixy (prípony)} 
 daného slova. Jeho veľká výhoda spočíva v rýchlom zostrojení a veľkom množstve 
-efektívnych algoritmov na ňom. V softvéri sme vizualizovali jeho zostrojenie, a 
-preto ho aj tu popíšeme.
+efektívnych algoritmov na ňom. 
 
 \section{Zostrojenie sufixového stromu}
-Existuje veľa spôsobov ako zotrojiť sufixový strom. Najjednoduchšie riešenie 
+Najjednoduchšie riešenie ako zostrojiť sufixový strom
 je využiť písmenkový strom a pridať do neho všetky sufixy. Takéto riešenie má 
-časovú aj pamäťovú zložitosť $O(n^2)$. 
-
-\citet{ukkonen} navrhol, ako zostrojiť strom rýchlejšie a za behu. 
+časovú aj pamäťovú zložitosť $O(n^2)$. Ako prvý navrhol lineárne riešenie 
+\citet{weiner}. Weinerove riešenie zjednodušil \citet{McCreight}. Ďalšie 
+zjednodušenie vymyslel \citet{ukkonen}.
+Navyše \citet{ukkonen} navrhol, ako zostrojiť strom za behu. 
 
 \section{Ukkonenov algoritmus}
 
-Hlavnou myšlienkou algoritmu je pre slovo $w_1w_2w_3\cdots w_n\uz$ postupne 
-vytvoriť suffixové stromy pre slová $w_1, w_1w_2,\ldots, 
-w_1w_2w_3\cdots w_n\uz$. Označme tieto stromy $T(1), T(2),\ldots, T(n), T$. 
-Teda, vytvárame $n$ stromov a každý zatiaľ na vytvorenie potrebuje $O(n^2)$ 
-krokov. Toto je na prvý pohľad veľmi nešikovné riešenie pretože počet 
+Často budeme chcieť označovať podslovo slova $w = w_1w_2w_3\cdots w_n$. 
+Pre podslovo od indexu $i$ po index $j$ sme zaviedli označenie $w[i:j]$, teda 
+$w = w[1:n]$. Keďže každá cesta z koreňa do nejakého vrcholu zodpovedá slovu, 
+vrcholy stotožníme so slovami. Pokiaľ hovoríme, že sme slovu $w$ 
+pripojili písmenko $a$, myslíme tým, že sme do písmenkového stromu za 
+korešpondujúci vrchol pripojili ďalší s hranou $a$. V prípade stromu s 
+komprimovanými hranami to znamená, že sme hranu rozšírili o písmenko $a$ 
+(obrázok \ref{}).
+
+Hlavnou myšlienkou algoritmu je pre slovo $w = w_1w_2w_3\cdots w_n\uz$ 
+postupne vytvoriť sufixové stromy pre slová $w[1:1], w[1:2], w[1:3], \ldots, 
+w[1:n+1]$. Označme tieto stromy $T(1), T(2),\ldots, T(n), T(n+1) = T$. 
+Teda, vytvárame $n$ stromov a pomocou písmenkového stromu s nekomprimovanými 
+hranami, každý zatiaľ na vytvorenie potrebuje $O(n^2)$ 
+krokov. Toto je na prvý pohľad veľmi nešikovné riešenie, pretože počet 
 krokov potrebných na zostrojenie všetkých stromov je $O(n^3)$. 
 Avšak zopár vylepšeniami je možné tento algoritmus zrýchliť až na hranicu 
 $O(n)$ a to aj pre rýchlosť, aj pre pamäť. 
-
 % well, nikde nie je napísané, že je to theta, ale hádam potrebujeme aspoň 
 % prečítať vstup, nie?
 
 Môžeme si všimnúť, že keď už máme vytvorený strom 
-$T(i-1)$ (ktorý obsahuje sufixy $w_1\cdots w_{i-1}, w_2\cdots w_{i-1}, \ldots, 
-w_{i-1}$), tak pre vytvorenie stromu $T(i)$ netreba znovu vytvárať nový strom 
-a pridávať do neho sufixy $w_1\cdots w_{i-1}w_i, w_2\cdots w_{i-1}w_i, \ldots, 
-w_{i-1}w_i$, ale stačí rozšíriť existujúce sufixy o znak $w_i$.
+$T(i-1)$ (ktorý obsahuje sufixy $w[1:{i-1}], w[2:{i-1}], \ldots, 
+w[{i-1}:{i-1}]$), tak pre vytvorenie stromu $T(i)$ netreba znovu vytvárať nový 
+strom a pridávať do neho sufixy $w[1:i], w[2:i], \ldots, w[{i-1}:i], w[i:i]$, 
+ale stačí rozšíriť existujúce sufixy stromu $T(n-1)$ o znak $w_i$.
 
 Druhým dobrým pozorovaním je fakt, že keď máme znak $a$, slovo $v$ 
-a v strome sa nachádza sufix $a v$, tak sa v strome určite 
+a v strome sa nachádza sufix $av$, tak sa v strome určite 
 nachádza aj slovo $v$. Vyplýva to zo základnej vlastnosti sufixových stromov 
 --  sufixový strom obsahuje všetky sufixy.
  
@@ -41,19 +50,25 @@ nachádza aj slovo $v$. Vyplýva to zo základnej vlastnosti sufixových stromov
 
 Pri vytváraní stromu $T(i)$ zo stromu $T(i-1)$ postupne rozširujeme sufixy, no 
 bolo by neefektívne ich vždy vyhľadávať z koreňa. Preto zavedieme 
-\emph{sufixový link} pre každý vrchol okrem koreňa, ten sufixový link nemá. 
-Pre vrchol končiaci sufix $av$ to je vrchol končiaci sufix $v$. 
+\emph{sufixovú linku}, čo je orientovaná hrana, ktorú má každý vrchol okrem 
+koreňa. Zo sufixu $av$ ide linka do sufixu $v$. 
 
 Algoritmus teda zmeníme tak, že namiesto opätovného vyhľadávania sufixu z 
 koreňa, vyhľadáme bod, z ktorého začneme pridávať len raz a ďalej sa 
-navigujeme po linkoch. Po pridaní vrchola, nazvime ho $u_i$, do stromu 
-prejdeme sufixovým linkom na miesto, kde opäť pripojíme vrchol $u_{i+1}$. 
-Vytvoríme sufixový link pre vrchol $u_i$ -- bude to smerník na $u_{i+1}$. 
+navigujeme po linkách. 
 
-Ako nám to pomohlo zlepšiť časovú zložitosť? Teraz nám stačí pre každý z 
-$n$ stromov nájsť sufix, kde začneme rozširovať strom. Ten nájdeme na $O(n)$ 
-krokov. Rozšírienie stromu o jeden znak zaberie tiež $O(n)$ krokov. Dokopy 
-venujeme jednému stromu $O(n)$ krokov a $n$ stromom venujeme $O(n^2)$.
+Pri vytváraní stromu $T(i)$ ako prvý pridávame najdlhší sufix $w[1:i]$. Sufix 
+$w[1:i-1]$ v strome máme a pamätáme si ho ako miesto z kade vytváranie stromu 
+$T(i)$ začneme. Rozšírime sufix $w[1:i-1]$ o písmenko $w_i$. Ďalej by sme 
+chceli rozšíriť sufix $w[2:i-1]$. Ten sa v strom nachádza a smeruje na ňho 
+sufixová linka. Stačí po nej prejsť, rozšíriť sufix $w[2:i-1]$ o písmenko 
+$w_i$ a vytvoriť sufixovú linku z $w[1:i]$ do $w[2:i]$. Takto pokračujeme, až 
+kým nepripojíme sufix $w[i:i]$.
+
+Ako nám to pomohlo zlepšiť časovú zložitosť? Miesto, z kade štartujeme 
+pridávanie sufixov si pamätáme. Rozšírienie stromu $T(i-1)$ o jeden znak 
+zaberie $O(i)$ krokov. Postupne rozširujeme $n$ ráz. Na vybudovanie stromu $T$ 
+teda potrebujeme $O(n^2)$ krokov.
 
 Ďalším zlepšením bude pamäťová optimalizácia.
 
@@ -62,21 +77,20 @@ venujeme jednému stromu $O(n)$ krokov a $n$ stromom venujeme $O(n^2)$.
 Veľmi priamočiarym krokom k zlepšeniu pamäťovej náročnosti sa zdá byť 
 kompresia hrán. Po nej na hranách 
 nie je len jeden znak, ale celý reťazec znakov. Takto má celý strom dovedna 
-$O(n)$ hrán. Dôvod, prečo ju uvádzam až tu, je jednoduchý. 
-Prichádza prirodzene s druhým vylepšením. Namiesto toho, aby sme si na hrane 
+$O(n)$ hrán. Namiesto toho, aby sme si na hrane 
 pamätali celý reťazec, budeme si na nej pamätať len počiatočnú a konečnú 
 pozíciu v slove, pre ktorý beží algoritmus\footnote{Tento krok predpokladá, 
 že vieme adresovať reťazec priamo.}. Po týchto zlepšeniach nám stačí 
 pamätať si $O(n)$ informácií. 
 
 Keďže kompresiou sa niektoré vrcholy stratili, musíme upraviť spôsob, ako sa 
-pohybovať po sufixových linkoch. Úprava bude mierna. Po pridaní znaku 
-prejdeme do najbližšieho vrcholu a popri tom si zapamätáme reťazec znakov, 
-ktorý sme prešli. Keďže si znaky na hrane pamätáme ako dvojicu čísel, toto 
-nám zaberie len $O(1)$ krokov. Keď následne prejdeme po sufixovom linku, 
-vyhľadáme zapamätaný reťazec. Z vlastností stromu vyplýva, že stačí 
-pozerať len na prvé písmeno každej hrany preto, aby sme vedeli, či po nej 
-máme prejsť alebo nie.
+pohybovať po sufixových linkoch. Úprava bude mierna. Po rozšírení sufixu 
+$w[i:j]$ o znak prejdeme do najbližšieho vrcholu a popri tom si zapamätáme 
+reťazec znakov $\alpha$ na hrane, ktorou sme prešli. Keďže si znaky na hrane 
+pamätáme ako dvojicu čísel, toto nám zaberie len $O(1)$ krokov. Keď následne 
+prejdeme po sufixovom linku, vyhľadáme zapamätaný reťazec. Z vlastností stromu 
+vyplýva, že stačí pozerať len na prvé písmeno každej hrany preto, aby sme 
+vedeli, či po nej máme prejsť alebo nie.
 
 To, akým spôsobom sa písmenko po vyhľadaní pridá a kde vieme ušetriť počet 
 krokov, popíšeme v nasledujúcej časti.
@@ -150,22 +164,22 @@ začína daný sufix v slove.}
 
 \subsection{Zhrnutie}
 
-Sufixový strom $T$ pre slovo $w = w_1w_2w_3\cdots w_n\uz$, vytvoríme tak, že z 
-prázdneho stromu vytvoríme postupne stromy $T(1), T(2), T(3),\ldots, T(n), T$. 
+Sufixový strom $T$ pre slovo $w = w_1w_2w_3\cdots w_n\uz$ vytvoríme tak, že z 
+prázdneho stromu vytvoríme postupne stromy $T(1), T(2), T(3),\ldots, T(n), 
+T(n+1) = T$. 
 
 Strom $T(1)$ vytvoríme triviálne; pridáme koreňu hranu s dvojicou indexov 
 $(1, e)$ a nastavíme štartovací vrchol $u_s$ na práve vytvorený vrchol.
 
 Postupne vytvárame strom $T(i)$ zo stromu $T(i-1)$ rozšírením stromu 
-$T(i-1)$ o písmenko $w_i$\footnote{Respektíve strom $T$ zo stromu 
-$T(n)$ o písmenko $w_n$.} nasledovne:
+$T(i-1)$ o písmenko $w_i$ následovne:
 
 \begin{enumerate}
 \item index $e$ nastavíme na novú hodnotu $i$; 
 Tým sme vykonali všetky prvé prípady. Vieme si udržiavať ich počet $j$;
 \item za aktuálny vrchol $u$ si zvolíme štartovací vrchol $u_s$;
 \item z aktuálneho vrcholu prejdeme po hrane vyššie a zapamätáme si reťazec 
-$\alpha$;
+na hrane po ktorej sme prešli;
 \item ak nie sme v koreni, prejdeme po sufixovom linku. Nastavíme aktuálny 
 vrchol;
 \item z aktuálneho vrcholu vyhľadáme reťazec $w_{j+1}\cdots w_i$;
@@ -185,17 +199,30 @@ Takto vybudujeme sufixový strom pre slovo $w$.
 
 \section{Použitie}\label{sec:sx:usage}
 
-Sufixový strom má v stringológií veľa využití
-\citep{gusfield}. Najtriviálnejší je algoritmus na zistenie podreťazca v 
-slove. Navyše vieme určiť, na ktore pozícií sa podreťazec vyskytuje. Pri 
+Sufixový strom má v stringológií veľa využití \citep{gusfield}. Algoritmus na 
+zistenie prítomnosti podreťazca v slove je rovnaký ako pri písmenkovom strome. 
+Navyše vieme určiť, na ktorej pozícií sa podreťazec vyskytuje. Pri 
 konštrukcii stromu stačí označovať listy číslami v poradí podľa vytvorenia. 
+Hľadanie podreťazca~$p$ v predspracovanom texte~$T$ nám zaberie len 
+$O(|p|)$~krokov.
 
 Sufixový strom pre viacej reťazcov sa nazýva \emph{všeobecný sufixový strom} 
 a dá sa zostrojiť miernou úpravou Ukkonenovho algoritmu. Reťazce $v_1, v_2, 
 v_3, \ldots, v_n$ spojíme a oddelíme unikátnymi oddelovačmi. Vznikne nám slovo 
 $v_1\uz_1v_2\uz_2v_3\uz_3\cdots v_n\uz_n$, z ktorého vieme vybudovať sufixový 
-strom. Tento strom sa dá využiť na vyhľadanie najdlhšieho spoločného 
-podreťazca. 
+strom. Tento strom sa dá využiť na vyhľadanie \emph{najdlhšieho spoločného 
+podreťazca}. 
+
+\emph{Najdlhší opakujúci sa podreťazec} sa v sufixovom strom určite vetví, 
+takže ho nájdeme ako najdlhšie podslovo, ktoré sa nekončí v liste.
+
+Pre slovo $\alpha$ vieme pomocou sufixových stromov nájsť efektívne 
+\emph{najdlhšie palindormatické podslovo}, čo je slovo $\beta \subset \alpha$ 
+také, že $\beta^R = \beta$. Zostrojíme všeobecný sufixový strom pre slová 
+$\beta$ a $\beta^R$. Pre tento strom vieme efektívne zostrojiť dátovú 
+štruktúru pre najnižšieho spoločného predka \citep{lca}. Potom nám stačí 
+pre každý index $q$ od $1$ po $n-1$ hľadať najnižšieho spoločného predka pre 
+sufixy $w[q:n]$ a $w^R[n-q:n]$.
 
 % \section{Vizualizácia}
 % 
