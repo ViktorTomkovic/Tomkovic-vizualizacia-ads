@@ -9,7 +9,7 @@ vo vrcholoch, ale samotná poloha v strome určuje kľúč (slovo).
 Písmenkový strom je \emph{asociatívne pole (slovník)}, čiže 
 poskytuje tieto tri operácie:
 \begin{itemize}
-\item $\put(\k)$ -- pridá do stromu slovo $\k$;
+\item $\trieinsert(\k)$ -- pridá do stromu slovo $\k$;
 \item $\find(\k)$ -- zistí, či sa v strome slovo $\k$ nachádza;
 \item $\delete(\k)$ -- odstráni zo stromu slovo $\k$.
 \end{itemize}
@@ -23,13 +23,13 @@ Všetky tri operácie začínajú v koreni a ku slovu pridávajú ukončovací z
 teda pracujú s reťazcom $\k\uz$. 
 
 \paragraph{Vkladanie slova.}%
-Operácia $\put(\k)$ vloží do stromu vstupný reťazec tak, že z reťazca číta znaky 
+Operácia $\trieinsert(\k)$ vloží do stromu vstupný reťazec tak, že z reťazca číta znaky 
 a prechádza po príslušných hranách. Ak hrana s daným symbolom neexistuje, 
 pridá ju (pozri obr.~\ref{img:trieinsert}).
 
 \begin{figure}
 \centering
-\includegraphics[width=0.9\columnwidth]{obrazky/trieinsertsmall.png}
+\includegraphics[width=0.7\columnwidth]{obrazky/trieinsertsmall.png}
 \caption{\emph{Vloženie slova \uv{{\tt SURNE}}.} Začiatok slova 
 \uv{{\tt SU}} sa v strome nachádza, ešte treba pripojiť hrany 
 so znakmi {\tt R}, {\tt N}, {\tt E} a \uz.} 
@@ -52,7 +52,7 @@ Preto je dobré túto mŕtvu vetvu odstrániť (pozri obr.~\ref{img:triedelete})
 
 \begin{figure}
 \centering
-\includegraphics[width=0.9\columnwidth]{obrazky/triedeletesmall.png}
+\includegraphics[width=0.7\columnwidth]{obrazky/triedeletesmall.png}
 \caption{\emph{Odstránenie slova \uv{{\tt PODLA}}.} Po odstránení 
 \uz\ nám v strome ostane nepotrebá prípona \uv{{\tt DLA}} (mŕtva vetva), 
 ktorá je vyznačená červenou.}
@@ -62,11 +62,12 @@ ktorá je vyznačená červenou.}
 Všetky tri operácie majú časovú 
 zložitosť $O(|\k|)$, kde $|\k|$ je dĺžka slova.
 
+%\clearpage
 \section{Použitie}\label{sec:trie:pouzitie}
 Prvýkrát navrhol písmenkový strom \citet{fredkin}, ktorý používal názov 
 \emph{trie memory}\footnote{Z anglického re\emph{trie}val -- získanie.}, 
 keďže išlo o spôsob udržiavania dát v pamäti. 
-\citet{patricia} navrhol písmenkový strom, v ktorom sa každá cesta bez vetvení
+\citet{patricia} navrhol písmenkový strom, v~ktorom sa každá cesta bez vetvení
 skomprimuje do jedinej hrany (na hranách potom nie sú znaky, ale slová).
 Táto štruktúra je známa pod menom \emph{PATRICIA} (tiež \emph{radix tree},
 resp.\ \emph{radix trie}) a využíva sa napríklad v \emph{routovacích tabuľkách}

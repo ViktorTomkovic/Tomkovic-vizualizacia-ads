@@ -29,6 +29,7 @@
 ]{biblatex}
 \addbibresource{literatura.bib}
 
+\usepackage{pdfpages}
 \usepackage{xcolor}
 \usepackage[head=20pt,a4paper]{geometry}
 \geometry{top=2.5cm,bottom=2.5cm,left=3.5cm,right=2.0cm}
@@ -55,13 +56,13 @@
 % \usepackage{subcaption}
 \usepackage{subfig}
 \usepackage{array}
-  
+ 
 %%definície konštánt a makier
 \def \nazovUniverzity{Univerzita Komensk{é}ho v Bratislave}
 \def \NazovUniverzity{\textbf{\Large \sc \nazovUniverzity}} %\sc pre smallcaps
 \def \nazovFakulty{Fakulta matematiky, fyziky a informatiky}
 \def \NazovFakulty{\textbf{\large \sc \nazovFakulty}}
-\def \nazovDiela{Vizualizácia union-findu, písmenkového stromu a~sufixového stromu}
+\def \nazovDiela{Vizualizácia stromových dátových štruktúr}
 \def \NazovDiela{\LARGE{\em \nazovDiela}}
 \def \podnazovDiela{nie je}
 \def \PodazovDiela{\large{\em \podnazovDiela}}
@@ -91,7 +92,7 @@
 \def\union{\mathop{\mathit{union}}}
 \def\k{w}
 %\def\kluc{kľúč}
-\def\put{\mathop{\mathit{insert}}}
+\def\trieinsert{\mathop{\mathit{insert}}}
 \def\triefind{\mathop{\mathit{find}}}
 \def\delete{\mathop{\mathit{delete}}}
 \def\trie{trie}

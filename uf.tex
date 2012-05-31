@@ -12,7 +12,7 @@ a potrebujeme implementovať nasledovné tri operácie:
 \item $\union(x, y)$ -- ak $x, y$ sú zástupcovia množín $S$ a $T$,
                  $\union$ vytvorí novú množinu $S\cup T$,
                  pričom $S$ aj $T$ zmaže. Zástupcom novej množiny $S\cup T$
-                 je $x$ alebo $y$.
+                 je $x$ alebo $y$;
 \item $\find(x)$ -- nájde zástupcu množiny, v ktorej sa 
                 prvok $x$ nachádza.
 \end{itemize}
@@ -21,7 +21,7 @@ a potrebujeme implementovať nasledovné tri operácie:
 
 Union-find sa dá použiť na reprezentáciu neorientovaného grafu,
 do ktorého pridávame hrany a odpovedáme na otázku: "Sú dané dva
-vrcholy spojené nejakou cestou?" (t.j.\ sú v rovnakom komponente súvislosti?)
+vrcholy spojené nejakou cestou?" (t.j.\ sú v~rovnakom komponente súvislosti?)
 Medzi najznámejšie aplikácie patria Kruskalov algoritmus na nájdenie najlacnejšej
 kostry \citep{kruskal} a unifikácia \citep{unif}.
 
@@ -99,13 +99,12 @@ a $\rank(y)$ zvýšime o 1.
 \label{img:komp4}
 \includegraphics[height=0.20\textheight]{obrazky/komp4.png}
 }
- 
-\label{img:kompresia}
 \caption{\emph{Kompresia cesty z vrcholu 11 do koreňa.} 
 Cesta je vyznačená šedou. 
 Pri úplnej kompresii~\subref{img:komp2} sa všetky vrcholy 
 napoja na zástupcu. Pri delení cesty~\subref{img:komp3} a pólení 
 cesty~\subref{img:komp4} sa cesta skráti približne na polovicu.}
+\label{img:kompresia}
 \end{figure}
  
 Druhou heuristikou je kompresia cesty. Algoritmov na efektívnu kompresiu 

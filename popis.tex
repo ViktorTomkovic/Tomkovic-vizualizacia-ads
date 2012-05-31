@@ -34,8 +34,8 @@ jednoduchý algoritmus. Vpravo dole je vykreslená reprezentácia v poli a
 pre každý vrchol je vypísaný otec. Vľavo je riadne vypísaný zoznam vykonaných 
 krokov, ktorý je navyše farebne odlíšený. Farby vo výpise a vo vizualizácií 
 spolu korešpondujú. Vľavo dole sú nastavenia. 
-Applet poskytuje operácie $\union$ s heuristikou na spájanie a $\find$ s 
-možnosťami bez kompresie a s kompresiou cesty 
+Applet poskytuje operácie $\union$ s heuristikou na spájanie a $\find$ 
+s~možnosťami bez kompresie a s kompresiou cesty 
 (popísané v sekciách \ref{sec:komp-union} a \ref{sec:komp-cesta}).
 
 \begin{figure}
@@ -61,14 +61,14 @@ pochopenie ako fungujú algoritmy to je postačujúce. Ovládanie je intuitívne
 
 AlVie je veľký projekt. Je to prostredie na vizualizáciu algoritmov, 
 vytváranie vlastných vizualizácií a veľmi flexibilné pridávanie vlastného 
-materiálu. Slúžil na podpru talianských škôl. Projekt momentálne spravuje 
+materiálu. Slúžil na podporu talianskych škôl. Projekt momentálne spravuje 
 Pilu Crescenzi. Je implementovaný v jazyku \Java.
 
 \subsubsection{Popis}
 Na webovej stránke projektu (\url{http://alvie.algoritmica.org/alvie3}) je 
 prehľadný popis funkcionality a používania. Aplikácia ponúka množstvo 
 nastavení a veľa možností exportovania danej vizualizácie. Avšak nepodarilo sa 
-mi nastaviť si vlastný vstup, preto som ostal len pri základnej možnosti. 
+nám nastaviť si vlastný vstup, preto sme ostali len pri základnej možnosti. 
 Union-find je tu bohužiaľ implementovaný nie cez les, ale ako spájaný zoznam 
 (obr. \ref{img:vis:alvie}), čo asymptoticky spomaľuje beh algoritmu.
 
@@ -113,7 +113,7 @@ množín. Celá aplikácia beží v internetovom prehliadači.}
 \end{figure}
 
 Aplikácia je dobre popísaná, dá sa na nej nastaviť všetko potrebné vrátane 
-rýchlosti premietania a veľkosti vykreľovacej plochy. Nevýhodou je, že 
+rýchlosti premietania a veľkosti vykresľovacej plochy. Nevýhodou je, že 
 nevypisuje, čo sa práve deje a teda používateľ musí algoritmus poznať.
 
 \subsection{TRAKLA2 (trie)}\label{sec:trakla}
@@ -121,15 +121,13 @@ nevypisuje, čo sa práve deje a teda používateľ musí algoritmus poznať.
 TRAKLA2 je učebná pomôcka vyvíjaná skupinou ľudí "Software visualization 
 group". Všetci sú študenti alebo zamestnanci na Helsinskej technickej 
 univerzite. Obsahuje veľa algoritmov a ku každému má sadu úloh, ktoré žiak 
-môže riešiť. 
-
-Celý výučbový systém je dostupný a popísaný na: 
+môže riešiť. Celý výučbový systém je dostupný a popísaný na: 
 \url{http://www.cse.hut.fi/en/research/SVG/TRAKLA2/index.shtml}.
 
 \begin{figure}
 \centering
 \greybox{%
-\includegraphics[scale=0.33]{obrazky/trakla2}%
+\includegraphics[scale=0.32]{obrazky/trakla2}%
 }
 \caption{\emph{Prostredie TRAKLA2.} Riešenie zadania; budovanie písmenkového 
 stromu obsahujúceho zadané reťazce. Celá aplikácia beží v internetovom 
@@ -151,9 +149,9 @@ pseudokód a vpravo je dátová štruktúra, na ktorej sa vykonáva zadanie (obr
 \ref{img:vis:trakla2}). Je možné zvoliť si veľkosť písma.
 
 Všetko je spravené pekne a prehľadne, možno grafická stránka by sa dala 
-vylepšiť. Jediná chyba, na ktorú som narazil bola, že pokiaľ som kroky 
-nevykonával v správnom poradí, nebola mi uznaná správna odpoveď aj keď 
-výsledok správny bol. Toto je ale špecifická chyba len pre písmenkový strom 
+vylepšiť. Jediná chyba, na ktorú sme narazili bola, že pokiaľ sme kroky 
+nevykonávali v správnom poradí, nebola mi uznaná správna odpoveď, aj keď 
+výsledok správny bol. Toto je špecifická chyba len pre písmenkový strom 
 (pre iné dátové štruktúry môže poradie pridávania zmeniť reprezentáciu).
 
 \subsection{Sufixové stromy}
@@ -164,8 +162,9 @@ sa podarilo nájsť len jednu a aj to textovú vizualizáciu.
 \subsection{Ďalšie vizualizácie}
 
 Uviedli sme tri softvéry pre union-find a jeden pre písmenkový 
-strom. Na jednoduché 
-písmenkové stromy sme viac vizualizácií nenašli. Ďalšie programy vizualizovali 
+strom. Pre jednoduché 
+písmenkové stromy sme viac vizualizácií nenašli a pre sufixový strom sme 
+nenašli žiadnu. Ďalšie programy vizualizovali 
 textové dáta alebo iné modifikácie písmenkových stromov (niektoré sú uvedené v 
 sekcií \ref{sec:trie:pouzitie}).
 
@@ -199,10 +198,10 @@ z prednášok, alebo učiteľmi, ktorí túto aplikáciu budú chcieť využíva
 hodinách.
 
 Preto sa nám zdalo byť vhodné, aby študent dostával výpisy o tom, čo sa bude 
-diať a aby bolo prostredie pre študenta dostatočne používateľsky príjmené. Pre 
+diať a aby bolo prostredie pre študenta dostatočne používateľsky príjemné. Pre 
 učiteľa je potrebné, aby sa aplikácia prijateľne zobrazovala cez projektor, 
 aby bola dátová štruktúra od začiatku naplnená (veľakrát sa algoritmy 
-vysvetlujú na pripravenej dátovej štruktúre) a taktiež, aby bolo prostredie 
+vysvetľujú na pripravenej dátovej štruktúre) a taktiež, aby bolo prostredie 
 používateľsky príjemné.
 
 Softvér ako taký mal vizualizovať tieto veci:
@@ -269,7 +268,7 @@ zadávať aj zložitejší vstup.
 
 Ďalej bolo potrebné názorne vizualizovať dátové štruktúry a všetko podstatné k 
 pochopeniu algoritmov. Konkrétne pri union-finde išlo o prípadné ranky, 
-pri písmenkovom strome o odstraňovanie vetiev, prehľadné vykresľovanie pri 
+pri písmenkovom strome o~odstraňovanie vetiev, prehľadné vykresľovanie pri 
 prebiehajúcich algoritmoch a pri sufixovom strome sufixové linky, práve 
 pridávaný sufix a celé slovo, ktorému sufixový strom budujeme.
 
@@ -284,7 +283,7 @@ technológie a zameraniu projektu nebolo potrebné použiť viac technológií.
 \subsection{Rozhranie aplikácie}
 
 Rozhranie vizualizácií bolo podobné ako všetkých iných štruktúr 
-implementovaných v predošlej verzií softvéru. Vstupné dáta boli zadávané do 
+implementovaných v~predošlej verzií softvéru. Vstupné dáta boli zadávané do 
 vstupného textového poľa, alebo klikaním myšou. Podľa stlačeného tlačidla sa 
 spustil daný proces. Výstupne údaje boli prezentované vo vykresľovacom okne 
 pre dátovú štruktúru a vo výpise pre komentáre. Vykreslená štruktúra sa dala 
@@ -306,7 +305,7 @@ v kapitole \ref{chap:uf}).
 Pri písmenkovom strome bolo nutné zabezpečiť vstupné pole tak, aby sa do systému 
 dostali slová, len s abecedou, ktorú chceme. Pre nás abecedu tvorili veľké 
 písmená anglickej abecedy. Ďalej bolo potrebné, aby sa dal pridať do stromu 
-ucelenejší text. Na vykonávanie operácií $\put$, $\find$ a $\delete$ bolo 
+ucelenejší text. Na vykonávanie operácií $\trieinsert$, $\find$ a $\delete$ bolo 
 potrebné implementovať tlačidlá.
 
 \subsubsection{Sufixový strom}
@@ -319,7 +318,7 @@ Sufixový strom bolo potrebné vytvoriť zo vstupného slova. Preto treba na ten
 Po implementácií mal systém tvoriť jeden celok, preto bola potreba dbať na 
 celistvosť a podobný štýl programovania. Na jednotlivé implementovanie 
 obrazoviek, vstupných polí a tlačidiel bolo nutné použiť už existujúce 
-rozhranie a tak isto na implementáciu vizualizácie bolo treba použiť rovnaký 
+rozhranie a takisto na implementáciu vizualizácie bolo treba použiť rovnaký 
 systém, ktorý vyžadoval dedenie z predpripravených abstraktných tried. 
 
 V hornej lište aplikácie bolo menu na výber dátových štruktúr a menu 
